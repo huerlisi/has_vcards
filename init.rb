@@ -1,3 +1,5 @@
+require 'vcards/vcard'
+
 module ActiveRecords
   module Macros
     module IncludedProxy
@@ -26,4 +28,5 @@ module ActiveRecords
 end
 
 ActiveRecord::Base.extend(ActiveRecords::Macros::IncludedProxy::ClassMethods)
+ActiveRecord::Base.extend(Vcards::ClassMethods)
 ActionView::Base.send :include, Vcards::VcardHelper::InstanceMethods

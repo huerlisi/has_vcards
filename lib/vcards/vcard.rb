@@ -127,4 +127,17 @@ module Vcards
       return result
     end
   end
+
+  module ClassMethods
+    def has_vcards(options = {})
+      class_eval <<-end_eval
+        named_scope :by_name, lambda {|name| {:include => :vcard, :order => 'full_name', :conditions => Vcards::Vcard.by_name_conditions(name)}}
+
+        has_one :vcard, :class_name => 'Vcards::Vcard', :as => 'object'
+        has_many :vcards, :class_name => 'Vcards::Vcard', :as => 'object'
+        
+        has_one_delegate, :vcard, :class_name => 'Vcards::Vcard', :as => 'object'
+      end_eval
+    end
+  end
 end
