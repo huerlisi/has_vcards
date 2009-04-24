@@ -66,18 +66,42 @@ module Vcards
         number.save
     end
 
+    def phone_number
+      phone_numbers.first
+    end
+    
+    def phone_number=(number)
+      phone_numbers.build(:number => number, :phone_number_type => 'phone')
+    end
+    
     has_many :mobile_numbers, :class_name => 'PhoneNumber', :conditions => ["phone_number_type = ?", 'mobile'], :after_add => :add_mobile_number
     def add_mobile_number(number)
         number.phone_number_type = 'mobile'
         number.save
     end
 
+    def mobile_number
+      mobile_numbers.first
+    end
+    
+    def mobile_number=(number)
+      mobile_numbers.build(:number => number, :phone_number_type => 'mobile')
+    end
+    
     has_many :fax_numbers, :class_name => 'PhoneNumber', :conditions => ["phone_number_type = ?", 'fax'], :after_add => :add_fax_number
     def add_fax_number(number)
         number.phone_number_type = 'fax'
         number.save
     end
 
+    def fax_number
+      fax_numbers.first
+    end
+    
+    def fax_number=(number)
+      fax_numbers.build(:number => number, :phone_number_type => 'fax')
+    end
+    
     # Salutation
     def salutation
       case honorific_prefix
