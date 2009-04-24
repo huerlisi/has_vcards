@@ -136,7 +136,7 @@ module Vcards
         has_one :vcard, :class_name => 'Vcards::Vcard', :as => 'object'
         has_many :vcards, :class_name => 'Vcards::Vcard', :as => 'object'
         
-        has_one_delegate, :vcard, :class_name => 'Vcards::Vcard', :as => 'object'
+        has_one_delegate :vcard, :class_name => 'Vcards::Vcard', :as => 'object'
       end_eval
     end
   end
