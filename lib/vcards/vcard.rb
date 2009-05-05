@@ -40,21 +40,21 @@ module Vcards
       lines = [street_address, "#{postal_code} #{locality}"]
 
       # Only return non-empty lines
-      lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}
+      lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
     end
 
     def full_address_lines
       lines = [honorific_prefix, full_name] + address_lines
 
       # Only return non-empty lines
-      lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}
+      lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
     end
 
     def contact_lines
       lines = contacts.map{|p| p.to_s}
       
       # Only return non-empty lines
-      lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}
+      lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
     end
 
     # Phone numbers
