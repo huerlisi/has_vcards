@@ -51,7 +51,7 @@ module Vcards
     end
 
     def contact_lines
-      lines = contacts.map{|p| p.to_s}
+      lines = contacts.map{|p| p.to_s unless (p.number.nil? or p.number.strip.empty?)}
       
       # Only return non-empty lines
       lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
