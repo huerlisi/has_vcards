@@ -58,9 +58,9 @@ module Vcards
     end
 
     # Phone numbers
-    has_many :contacts, :class_name => 'PhoneNumber'
+    has_many :contacts, :class_name => 'PhoneNumber', :as => :object
 
-    has_many :phone_numbers, :class_name => 'PhoneNumber', :conditions => ["phone_number_type = ?", 'phone'], :after_add => :add_phone_number
+    has_many :phone_numbers, :class_name => 'PhoneNumber', :as => :object, :conditions => ["phone_number_type = ?", 'phone'], :after_add => :add_phone_number
     def add_phone_number(number)
         number.phone_number_type = 'phone'
         number.save
