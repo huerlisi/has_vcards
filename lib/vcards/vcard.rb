@@ -74,7 +74,7 @@ module Vcards
       phone_numbers.build(:number => number, :phone_number_type => 'phone')
     end
     
-    has_many :mobile_numbers, :class_name => 'PhoneNumber', :conditions => ["phone_number_type = ?", 'mobile'], :after_add => :add_mobile_number
+    has_many :mobile_numbers, :class_name => 'PhoneNumber', :as => :object, :conditions => ["phone_number_type = ?", 'mobile'], :after_add => :add_mobile_number
     def add_mobile_number(number)
         number.phone_number_type = 'mobile'
         number.save
@@ -88,7 +88,7 @@ module Vcards
       mobile_numbers.build(:number => number, :phone_number_type => 'mobile')
     end
     
-    has_many :fax_numbers, :class_name => 'PhoneNumber', :conditions => ["phone_number_type = ?", 'fax'], :after_add => :add_fax_number
+    has_many :fax_numbers, :class_name => 'PhoneNumber', :as => :object, :conditions => ["phone_number_type = ?", 'fax'], :after_add => :add_fax_number
     def add_fax_number(number)
         number.phone_number_type = 'fax'
         number.save
