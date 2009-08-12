@@ -1,5 +1,6 @@
 class PhoneNumber < ActiveRecord::Base
-  belongs_to :vcard
+  belongs_to :vcard, :class_name => 'Vcards::Vcard'
+  belongs_to :object, :polymorphic => true
 
   def to_s
     case phone_number_type
