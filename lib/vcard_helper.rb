@@ -1,4 +1,4 @@
-module Vcards::VcardHelper
+module VcardHelper
   module InstanceMethods
     def address(vcard, separator = '<br/>')
       vcard.address_lines.map{|line| h(line)}.join(separator)
