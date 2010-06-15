@@ -49,7 +49,7 @@ class Vcard < ActiveRecord::Base
     lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
   end
 
-  def contact_lines
+  def contact_lines(separator = " ")
     lines = contacts.map{|p| p.to_s unless (p.number.nil? or p.number.strip.empty?)}
     
     # Only return non-empty lines

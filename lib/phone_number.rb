@@ -4,18 +4,22 @@ class PhoneNumber < ActiveRecord::Base
 
   validates_presence_of :number
 
-  def to_s
+  def label
     case phone_number_type
     when 'phone'
-      return "Tel: #{number}"
+      "Tel:"
     when 'fax'
-      return "Fax: #{number}"
+      "Fax:"
     when 'mobile'
-      return "Mob: #{number}"
+      "Mob:"
     when 'email'
-      return "Mail: #{number}"
+      "Mail:"
     else
-      return number
+      ""
     end
+  end
+  
+  def to_s(separator = " ")
+    return [label, number].compact.join(separator)
   end
 end
