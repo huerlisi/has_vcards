@@ -130,7 +130,7 @@ end
 module VcardClassMethods
   def has_vcards(options = {})
     class_eval <<-end_eval
-      named_scope :by_name, lambda {|name| {:include => :vcard, :order => 'full_name', :conditions => Vcard.by_name_conditions(name)}}
+      named_scope :by_name, lambda {|name| {:include => :vcard, :order => 'vcards.full_name', :conditions => Vcard.by_name_conditions(name)}}
 
       has_one :vcard, :as => 'object'
       has_many :vcards, :as => 'object'
