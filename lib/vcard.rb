@@ -1,6 +1,7 @@
 class Vcard < ActiveRecord::Base
   has_one :address
-  has_one_delegate :address
+  delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :to => :address
+  delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :to => :address
 
   has_many :addresses
 
@@ -133,9 +134,10 @@ module VcardClassMethods
       scope :by_name, lambda {|name| {:include => :vcard, :order => 'vcards.full_name', :conditions => Vcard.by_name_conditions(name)}}
 
       has_one :vcard, :as => 'object'
-      has_many :vcards, :as => 'object'
+      delegate :full_name, :nickname, :family_name, :given_name, :additional_name, :honorific_prefix, :honorific_suffix, :to => :vcard
+      delegate :full_name=, :nickname=, :family_name=, :given_name=, :additional_name=, :honorific_prefix=, :honorific_suffix=, :to => :vcard
       
-      has_one_delegate :vcard, :as => 'object'
+      has_many :vcards, :as => 'object'
     end_eval
   end
 end
