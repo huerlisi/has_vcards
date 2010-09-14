@@ -4,8 +4,8 @@ class Vcard < ActiveRecord::Base
 
   has_many :addresses
 
-  named_scope :active, :conditions => {:active => true}
-  named_scope :by_name, lambda {|name| {:conditions => self.by_name_conditions(name)}}
+  scope :active, :conditions => {:active => true}
+  scope :by_name, lambda {|name| {:conditions => self.by_name_conditions(name)}}
 
   belongs_to :object, :polymorphic => true
 
@@ -130,7 +130,7 @@ end
 module VcardClassMethods
   def has_vcards(options = {})
     class_eval <<-end_eval
-      named_scope :by_name, lambda {|name| {:include => :vcard, :order => 'vcards.full_name', :conditions => Vcard.by_name_conditions(name)}}
+      scope :by_name, lambda {|name| {:include => :vcard, :order => 'vcards.full_name', :conditions => Vcard.by_name_conditions(name)}}
 
       has_one :vcard, :as => 'object'
       has_many :vcards, :as => 'object'
