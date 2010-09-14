@@ -1,9 +1,9 @@
 class Vcard < ActiveRecord::Base
-  has_one :address
+  has_one :address, :autosave => true, :validate => true
   delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :to => :address
   delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :to => :address
 
-  has_many :addresses
+  has_many :addresses, :autosave => true, :validate => true
 
   scope :active, :conditions => {:active => true}
   scope :by_name, lambda {|name| {:conditions => self.by_name_conditions(name)}}
@@ -133,11 +133,11 @@ module VcardClassMethods
     class_eval <<-end_eval
       scope :by_name, lambda {|name| {:include => :vcard, :order => 'vcards.full_name', :conditions => Vcard.by_name_conditions(name)}}
 
-      has_one :vcard, :as => 'object'
+      has_one :vcard, :as => 'object', :autosave => true, :validate => true
       delegate :full_name, :nickname, :family_name, :given_name, :additional_name, :honorific_prefix, :honorific_suffix, :to => :vcard
       delegate :full_name=, :nickname=, :family_name=, :given_name=, :additional_name=, :honorific_prefix=, :honorific_suffix=, :to => :vcard
       
-      has_many :vcards, :as => 'object'
+      has_many :vcards, :as => 'object', :autosave => true, :validate => true
     end_eval
   end
 end
