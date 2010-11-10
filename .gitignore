@@ -1,6 +1,6 @@
-# Boring files
-# ============
-*~
-.#*
-_darcs
-DEADJOE
+# Rails Gem
+# =========
+# Generated
+rdoc
+pkg
+*.gem

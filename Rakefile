@@ -7,7 +7,7 @@ begin
   GEM = "has_vcards"
   AUTHOR = "Simon Hürlimann"
   EMAIL = "simon.huerlimann@cyt.ch"
-  SUMMARY = "Rails i18n view helpers for things like crud actions, models and and attributes."
+  SUMMARY = "Rails gem providing VCard like contact and address models and helpers."
   HOMEPAGE = "http://github.com/huerlisi/has_vcards/tree/master"
   
   gem 'jeweler', '>= 1.0.0'
@@ -22,7 +22,7 @@ begin
     s.author = AUTHOR
     
     s.require_path = 'lib'
-    s.files = %w(MIT-LICENSE README.markdown Rakefile) + Dir.glob("{lib,test,config,rails}/**/*")
+    s.files = %w(MIT-LICENSE README.markdown Rakefile) + Dir.glob("{lib,app,test,config}/**/*")
     
     # Runtime dependencies: When installing has_vcards these will be checked if they are installed.
     # Will be offered to install these if they are not already installed.
