@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{has_vcards}
-  s.version = "0.5.2"
+  s.version = "0.5.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Simon H\303\274rlimann"]
@@ -24,6 +24,8 @@ Gem::Specification.new do |s|
      "app/models/phone_number.rb",
      "app/models/vcard.rb",
      "app/views/vcards/_form.html.haml",
+     "lib/generators/has_vcards/migration_generator.rb",
+     "lib/generators/has_vcards/templates/migration.rb",
      "lib/has_vcards.rb",
      "lib/has_vcards/railtie.rb",
      "test/vcards_test.rb"
