@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{has_vcards}
-  s.version = "0.5.1"
+  s.version = "0.5.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Simon H\303\274rlimann"]
-  s.date = %q{2010-11-10}
+  s.date = %q{2010-11-12}
   s.description = %q{Rails gem providing VCard like contact and address models and helpers.}
   s.email = %q{simon.huerlimann@cyt.ch}
   s.extra_rdoc_files = [
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "app/models/address.rb",
      "app/models/phone_number.rb",
      "app/models/vcard.rb",
+     "app/views/vcards/_form.html.haml",
      "lib/has_vcards.rb",
      "lib/has_vcards/railtie.rb",
      "test/vcards_test.rb"
