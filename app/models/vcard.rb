@@ -12,6 +12,13 @@ class Vcard < ActiveRecord::Base
 
   belongs_to :object, :polymorphic => true
 
+  # Constructor
+  def initialize(attributes = nil)
+    super
+    
+    build_address unless address
+  end
+  
   # Convenience accessors
   def full_name
     result = read_attribute(:full_name)
