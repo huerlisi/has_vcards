@@ -1,4 +1,8 @@
-= show_for @vcard do |vcard|
+- vcard = vcard if defined?(vcard)
+- vcard ||= object.try(:vcard) if defined?(object)
+- vcard ||= @vcard
+- vcard ||= resource.try(:vcard) if defined?(resource)
+= show_for vcard do |vcard|
   = vcard.attribute :street_address
   = vcard.attribute :extended_address
   = vcard.attribute :postal_code
