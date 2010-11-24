@@ -1,0 +1,11 @@
+de:
+  activerecord:
+    attributes:
+      vcard:
+        post_office_box:  Postfach
+        extended_address: Adresszusatz
+        street_address:   Strasse
+        locality:         Ort
+        region:           Region
+        postal_code:      PLZ
+        country_name:     Land
