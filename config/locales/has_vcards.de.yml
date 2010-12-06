@@ -9,3 +9,15 @@ de:
         region:           Region
         postal_code:      PLZ
         country_name:     Land
+
+  formtastic:
+    labels:
+      full_name:        Name
+      post_office_box:  Postfach
+      extended_address: Adresszusatz
+      street_address:   Strasse
+      locality:         Ort
+      region:           Region
+      postal_code:      PLZ
+      country_name:     Land
+      
