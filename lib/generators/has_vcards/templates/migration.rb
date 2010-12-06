@@ -1,4 +1,4 @@
-class CreateVcards < ActiveRecord::Migration
+class CreateHasVcards < ActiveRecord::Migration
   def self.up
     create_table 'addresses', :force => true do |t|
       t.string  'post_office_box',  :limit => 50
