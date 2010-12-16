@@ -1,4 +1,8 @@
 de:
+  has_vcards:
+    address:
+      to_s: %{street_address}, %{postal_code} #{locality}
+
   activerecord:
     attributes:
       vcard:
