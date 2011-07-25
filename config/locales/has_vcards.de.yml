@@ -6,6 +6,14 @@ de:
   activerecord:
     attributes:
       vcard:
+        full_name:        Name
+        nickname:         Spitzname
+        family_name:      Nachname
+        give_name:        Vorname
+        additional_name:  Mittelname
+        honorific_prefix: Anrede
+        honorific_suffix: Namenszusatz
+      address:
         post_office_box:  Postfach
         extended_address: Adresszusatz
         street_address:   Strasse
