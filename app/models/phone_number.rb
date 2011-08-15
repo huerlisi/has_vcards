@@ -19,7 +19,12 @@ class PhoneNumber < ActiveRecord::Base
     end
   end
   
-  def to_s(separator = " ")
-    return [label, number].compact.join(separator)
+  def to_s(separator = " ", format = :default)
+    case format
+      when :label
+        return [label, number].compact.join(separator)
+      else
+        return number
+    end
   end
 end
