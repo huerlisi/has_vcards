@@ -13,6 +13,19 @@ de:
         additional_name:  Mittelname
         honorific_prefix: Anrede
         honorific_suffix: Namenszusatz
+        address_type:     Art
+        # Include address attributes as we delegate
+        post_office_box:  Postfach
+        extended_address: Adresszusatz
+        street_address:   Strasse
+        locality:         Ort
+        region:           Region
+        postal_code:      PLZ
+        country_name:     Land
+        address_type:     Art
+        phone_number:     Telefon
+        mobile_number:    Mobile
+        fax_number:       Fax
       address:
         post_office_box:  Postfach
         extended_address: Adresszusatz
@@ -21,6 +34,10 @@ de:
         region:           Region
         postal_code:      PLZ
         country_name:     Land
+        address_type:     Art
+      phone_number:
+        number:           Nummer
+        phone_number_type: Nummer-Typ
 
   formtastic:
     labels:
@@ -32,4 +49,3 @@ de:
       region:           Region
       postal_code:      PLZ
       country_name:     Land
-      
