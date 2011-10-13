@@ -1,0 +1,6 @@
+%tr[phone_number]
+  %td= phone_number.phone_number_type
+  %td= link_to phone_number.number, phone_number, {'data-href-container' => 'tr'}
+  %td.action-links
+    = list_link_for(:edit, phone_number, :remote => true)
+    = list_link_for(:delete, phone_number, :remote => true)

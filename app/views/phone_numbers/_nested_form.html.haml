@@ -1,0 +1,3 @@
+= vcard.fields_for :phone_number do |phone_number|
+  = phone_number.select :phone_number_type, ['Tel. privat', 'Tel. geschäft', 'Handy', 'Fax', 'E-Mail']
+  = phone_number.text_field :number, :size => 12, :autocomplete => 'off'

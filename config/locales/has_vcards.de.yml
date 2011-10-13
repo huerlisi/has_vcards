@@ -4,6 +4,11 @@ de:
       to_s: %{street_address}, %{postal_code} #{locality}
 
   activerecord:
+    models:
+      vcard:              VCard
+      address:            Adresse
+      phone_number:       Kontakt
+
     attributes:
       vcard:
         full_name:        Name

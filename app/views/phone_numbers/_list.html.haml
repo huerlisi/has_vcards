@@ -1,0 +1,9 @@
+- phone_numbers ||= @vcard.contacts
+
+%table#phone_numbers_list.list
+  %tr
+    %th= t_attr :phone_number_type, PhoneNumber
+    %th= t_attr :number, PhoneNumber
+    %th.action-links
+
+  = render phone_numbers
