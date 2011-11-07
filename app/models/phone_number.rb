@@ -1,7 +1,9 @@
 class PhoneNumber < ActiveRecord::Base
+  # Vcard association
   belongs_to :vcard
   belongs_to :object, :polymorphic => true
 
+  # Validation
   validates_presence_of :number
 
   def label
@@ -19,6 +21,7 @@ class PhoneNumber < ActiveRecord::Base
     end
   end
   
+  # String
   def to_s(separator = " ", format = :default)
     case format
       when :label
