@@ -6,6 +6,13 @@ class PhoneNumber < ActiveRecord::Base
   # Validation
   validates_presence_of :number
 
+  # phone number types
+  scope :by_type, lambda {|value| where(:phone_number_type => value)}
+  scope :phone, by_type('phone')
+  scope :fax, by_type('fax')
+  scope :mobile, by_type('mobile')
+  scope :email, by_type('mobile')
+
   def label
     case phone_number_type
     when 'phone'
