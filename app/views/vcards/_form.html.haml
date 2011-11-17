@@ -4,5 +4,5 @@
     = address.input :extended_address
     = address.input :street_address
     = address.input :post_office_box
-    = address.input :postal_code
-    = address.input :locality
+    = address.input :postal_code, :wrapper_html => {:class => 'col1'}
+    = address.input :locality, :wrapper_html => {:class => 'col2'}
