@@ -6,7 +6,7 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.6.0)
+    ZenTest (4.5.0)
     abstract (1.0.0)
     accept_values_for (0.4.3)
       activemodel (>= 3.0.0)
@@ -118,6 +118,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ZenTest (< 4.6.0)
   accept_values_for
   autotest
   autotest-rails
