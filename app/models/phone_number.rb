@@ -24,7 +24,7 @@ class PhoneNumber < ActiveRecord::Base
     when 'email'
       "Mail:"
     else
-      ""
+      phone_number_type
     end
   end
   
