@@ -78,7 +78,7 @@ class Vard < ActiveRecord::Base
       }
     end
   end
-  accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }
+  accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }, :allow_destroy => true
   
   # Salutation
   def salutation
