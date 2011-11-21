@@ -72,7 +72,13 @@ class Vcard < ActiveRecord::Base
   end
 
   # Phone numbers
-  has_many :contacts, :class_name => 'PhoneNumber', :as => :object, :inverse_of => :vcard
+  has_many :contacts, :class_name => 'PhoneNumber', :as => :object, :inverse_of => :vcard do
+    def build_defaults
+      ['Tel. geschäft', 'Tel. privat', 'Handy', 'E-Mail'].map{ |phone_number_type|
+        build(:phone_number_type => phone_number_type) unless exists?(:phone_number_type => phone_number_type)
+      }
+    end
+  end
   accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }
   
   # Salutation
