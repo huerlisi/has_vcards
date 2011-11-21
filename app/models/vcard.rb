@@ -72,7 +72,7 @@ class Vcard < ActiveRecord::Base
   end
 
   # Phone numbers
-  has_many :contacts, :class_name => 'PhoneNumber', :as => :object
+  has_many :contacts, :class_name => 'PhoneNumber', :as => :object, :inverse_of => :vcard
   accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }
   
   # Salutation

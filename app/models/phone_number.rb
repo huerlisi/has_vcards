@@ -1,6 +1,6 @@
 class PhoneNumber < ActiveRecord::Base
   # Vcard association
-  belongs_to :vcard
+  belongs_to :vcard, :inverse_of => :contacts
   belongs_to :object, :polymorphic => true
 
   # Validation
