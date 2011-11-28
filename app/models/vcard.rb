@@ -52,7 +52,7 @@ class Vcard < ActiveRecord::Base
 
   # Helper methods
   def address_lines
-    lines = [extended_address, street_address, "#{postal_code} #{locality}"]
+    lines = [extended_address, street_address, post_office_box, "#{postal_code} #{locality}"]
 
     # Only return non-empty lines
     lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
