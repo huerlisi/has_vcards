@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.version      = HasVcards::VERSION
   s.authors      = ["Simon Hürlimann (CyT)"]
   s.email        = "simon.huerlimann@cyt.ch"
-  s.homepage     = "https://github.com/huerlisi/bookyt_pos"
-  s.summary      = "VCard rails plugin"
-  s.description  = "Rails gem providing VCard like contact and address models and helpers."
+  s.homepage     = "https://github.com/huerlisi/has_vcards"
+  s.summary      = "vCard plugin for Rails"
+  s.description  = "vCard like contact and address models and helpers for Rails."
 
   s.files        = `git ls-files app lib config`.split("\n")
   s.platform     = Gem::Platform::RUBY
