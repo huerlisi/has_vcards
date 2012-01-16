@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    has_vcards (0.12.1)
+    has_vcards (0.12.4)
 
 GEM
   remote: http://rubygems.org/
