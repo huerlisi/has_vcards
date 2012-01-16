@@ -5,7 +5,7 @@ de:
 
   activerecord:
     models:
-      vcard:              VCard
+      vcard:              Kontakt
       address:            Adresse
       phone_number:       Kontakt
 
