@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.licenses     = ["MIT"]
 
   # Files
-  s.files        = `git ls-files app lib config`.split("\n")
+  s.files        = `git ls-files app lib config db`.split("\n")
   s.extra_rdoc_files = ["README.markdown"]
 
   s.platform     = Gem::Platform::RUBY
