@@ -3,6 +3,8 @@ require 'rails'
 
 module HasVcards
   class Railtie < Rails::Engine
+    engine_name "has_vcards"
+
     initializer :after_initialize do
       ActionController::Base.helper HasVcardsHelper
 
