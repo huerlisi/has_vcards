@@ -1,5 +1,5 @@
 class AddIndexToVcards < ActiveRecord::Migration
   def change
-    add_index :vcards, :type
+    add_index :vcards, :active
   end
 end
