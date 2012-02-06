@@ -7,10 +7,10 @@ Gem::Specification.new do |s|
   # Description
   s.name         = "has_vcards"
   s.version      = HasVcards::VERSION
-  s.summary      = "VCard rails plugin"
-  s.description  = "Rails gem providing VCard like contact and address models and helpers."
+  s.summary      = "vCard plugin for Rails"
+  s.description  = "vCard like contact and address models and helpers for Rails."
 
-  s.homepage     = "https://github.com/huerlisi/bookyt_pos"
+  s.homepage     = "https://github.com/huerlisi/has_vcards"
   s.authors      = ["Simon Hürlimann (CyT)"]
   s.email        = "simon.huerlimann@cyt.ch"
   s.licenses     = ["MIT"]
