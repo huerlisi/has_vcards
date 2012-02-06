@@ -1,0 +1,59 @@
+# English locale
+en:
+  has_vcards:
+    address:
+      to_s: %{street_address}, %{postal_code} #{locality}
+
+  activerecord:
+    models:
+      vcard:              VCard
+      address:            Address
+      phone_number:       Contact
+
+    attributes:
+      vcard:
+        full_name:        Name
+        nickname:         Nickname
+        family_name:      Family name
+        give_name:        Given name
+        additional_name:  Additional name
+        honorific_prefix: Prefix
+        honorific_suffix: Suffix
+        address_type:     Type
+        # Include address attributes as we delegate
+        post_office_box:  Post Office Box
+        extended_address: Extended address
+        street_address:   Street
+        locality:         Locality
+        region:           Region
+        postal_code:      Postalcode
+        country_name:     Country
+        address_type:     Type
+        phone_number:     Phone
+        mobile_number:    Mobile
+        fax_number:       Fax
+      address:
+        post_office_box:  Post Office Box
+        extended_address: Extended address
+        extended_address: Adresszusatz
+        street_address:   Strasse
+        locality:         Ort
+        region:           Region
+        postal_code:      PLZ
+        country_name:     Land
+        address_type:     Art
+      phone_number:
+        number:           Number
+        phone_number_type: Number Type
+
+  formtastic:
+    labels:
+      full_name:        Name
+      post_office_box:  Post Office Box
+      extended_address: Extended address
+      extended_address: Adresszusatz
+      street_address:   Strasse
+      locality:         Ort
+      region:           Region
+      postal_code:      PLZ
+      country_name:     Land
