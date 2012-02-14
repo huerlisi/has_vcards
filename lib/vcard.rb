@@ -20,6 +20,7 @@ class Vard < ActiveRecord::Base
 
   named_scope :active, :conditions => {:active => true}
   named_scope :by_name, lambda {|name| {:conditions => self.by_name_conditions(name)}}
+  named_scope :with_address, :join => :address
 
   belongs_to :object, :polymorphic => true
 
