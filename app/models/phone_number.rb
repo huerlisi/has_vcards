@@ -11,7 +11,7 @@ class PhoneNumber < ActiveRecord::Base
   scope :phone, by_type('phone')
   scope :fax, by_type('fax')
   scope :mobile, by_type('mobile')
-  scope :email, by_type('mobile')
+  scope :email, by_type('email')
 
   def label
     case phone_number_type
