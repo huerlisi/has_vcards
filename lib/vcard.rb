@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module HasAddress
   def self.included(base)
     base.alias_method_chain :address, :autobuild
