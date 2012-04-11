@@ -20,7 +20,7 @@ class Vcard < ActiveRecord::Base
   
   scope :active, :conditions => {:active => true}
   scope :by_name, lambda {|name| {:conditions => self.by_name_conditions(name)}}
-  scope :with_address, joins(:address)
+  scope :with_address, joins(:address).includes(:address)
 
   belongs_to :object, :polymorphic => true
 
