@@ -14,17 +14,17 @@ class Vcard < ActiveRecord::Base
   delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :to => :address
   delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :to => :address
   include HasAddress
-  
+
   has_many :addresses, :autosave => true, :validate => true
   accepts_nested_attributes_for :addresses
-  
+
   scope :active, :conditions => {:active => true}
   scope :by_name, lambda {|name| {:conditions => self.by_name_conditions(name)}}
   scope :with_address, joins(:address).includes(:address)
 
   belongs_to :object, :polymorphic => true
 
-  
+
   # Convenience accessors
   def full_name
     result = read_attribute(:full_name)
@@ -67,7 +67,7 @@ class Vcard < ActiveRecord::Base
 
   def contact_lines(separator = " ")
     lines = contacts.map{|p| p.to_s unless (p.number.nil? or p.number.strip.empty?)}
-    
+
     # Only return non-empty lines
     lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
   end
@@ -81,7 +81,7 @@ class Vcard < ActiveRecord::Base
     end
   end
   accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }, :allow_destroy => true
-  
+
   # Salutation
   def salutation
     case honorific_prefix
