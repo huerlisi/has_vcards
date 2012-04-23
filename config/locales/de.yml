@@ -3,6 +3,16 @@ de:
     address:
       to_s: %{street_address}, %{postal_code} #{locality}
 
+  attributes:
+    full_name:        Name
+    nickname:         Spitzname
+    family_name:      Nachname
+    give_name:        Vorname
+    additional_name:  Mittelname
+    honorific_prefix: Anrede
+    honorific_suffix: Namenszusatz
+    address_type:     Art
+
   activerecord:
     models:
       vcard:              Kontakt
