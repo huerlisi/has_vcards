@@ -10,6 +10,11 @@ module HasVcardsClassMethods
       delegate :full_name=, :nickname=, :family_name=, :given_name=, :additional_name=, :honorific_prefix=, :honorific_suffix=, :to => :vcard
       
       has_many :vcards, :as => 'object', :autosave => true, :validate => true
+
+      def vcard_with_autobuild
+        vcard_without_autobuild || build_vcard
+      end
+      alias_method_chain :vcard, :autobuild
     end_eval
   end
 end
