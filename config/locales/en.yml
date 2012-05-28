@@ -2,7 +2,7 @@
 en:
   has_vcards:
     address:
-      to_s: %{street_address}, %{postal_code} #{locality}
+      to_s: "%{street_address}, %{postal_code} %{locality}"
 
   activerecord:
     models:

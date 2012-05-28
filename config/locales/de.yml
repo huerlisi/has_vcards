@@ -1,7 +1,9 @@
+# encoding: utf-8
+
 de:
   has_vcards:
     address:
-      to_s: %{street_address}, %{postal_code} #{locality}
+      to_s: "%{street_address}, %{postal_code} %{locality}"
 
   attributes:
     full_name:        Name
