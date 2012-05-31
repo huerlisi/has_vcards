@@ -7,7 +7,7 @@ de:
     full_name:        Name
     nickname:         Spitzname
     family_name:      Nachname
-    give_name:        Vorname
+    given_name:       Vorname
     additional_name:  Mittelname
     honorific_prefix: Anrede
     honorific_suffix: Namenszusatz
@@ -24,7 +24,7 @@ de:
         full_name:        Name
         nickname:         Spitzname
         family_name:      Nachname
-        give_name:        Vorname
+        given_name:       Vorname
         additional_name:  Mittelname
         honorific_prefix: Anrede
         honorific_suffix: Namenszusatz
