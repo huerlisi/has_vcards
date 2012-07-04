@@ -26,6 +26,16 @@ class Vcard < ActiveRecord::Base
 
   belongs_to :object, :polymorphic => true
 
+  # Validations
+  include I18nRailsHelpers
+
+  def validate_name
+    if full_name.blank?
+      errors.add(:full_name, "#{t_attr(:full_name, Vcard)} #{I18n.translate('errors.messages.empty')}")
+      errors.add(:family_name, "#{t_attr(:family_name, Vcard)} #{I18n.translate('errors.messages.empty')}")
+      errors.add(:given_name, "#{t_attr(:given_name, Vcard)} #{I18n.translate('errors.messages.empty')}")
+    end
+  end
 
   # Convenience accessors
   def full_name
