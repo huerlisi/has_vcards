@@ -118,4 +118,8 @@ class Vcard < ActiveRecord::Base
     end
     return result
   end
+
+  # SwissMatch
+  require 'vcard/swiss_match'
+  include Vcard::SwissMatch
 end
