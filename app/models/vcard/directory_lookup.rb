@@ -18,10 +18,24 @@ module Vcard::DirectoryLookup
     ::SwissMatch.directory_service.addresses(search)
   end
 
-  def directory_match?(ignore_fields = [])
+  def directory_found?(ignore_fields = [])
     directory_lookup(ignore_fields).present?
   end
 
-  module ClassMethods
+  def directory_match?(ignore_lookup_fields = [], ignore_match_fields = nil)
+    # Match all fields we search for, by default
+    ignore_match_fields ||= ignore_lookup_fields
+
+    matches = directory_lookup(ignore_lookup_fields)
+    matches.select do |match|
+      search = map_for_directory
+      # Only match fields not in ignore list
+      search.reject!{|key, value| ignore_match_fields.include? key}
+      changes = search.reject do |key, value|
+        UnicodeUtils.downcase(match.send(key).to_s) == UnicodeUtils.downcase(value.to_s)
+      end
+
+      changes.empty?
+    end.present?
   end
 end
