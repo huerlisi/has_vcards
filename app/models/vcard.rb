@@ -120,6 +120,5 @@ class Vcard < ActiveRecord::Base
   end
 
   # SwissMatch
-  require 'vcard/swiss_match'
-  include Vcard::SwissMatch
+  include Vcard::DirectoryLookup
 end

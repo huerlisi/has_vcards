@@ -1,8 +1,4 @@
-module Vcard::SwissMatch
-  def self.included(base)
-    base.extend ClassMethods
-  end
-
+module Vcard::DirectoryLookup
   def map_for_directory
     search = {}
     search[:first_name] = given_name
