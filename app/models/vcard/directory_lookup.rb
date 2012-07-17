@@ -22,20 +22,49 @@ module Vcard::DirectoryLookup
     directory_lookup(ignore_fields).present?
   end
 
-  def directory_match?(ignore_lookup_fields = [], ignore_match_fields = nil)
-    # Match all fields we search for, by default
-    ignore_match_fields ||= ignore_lookup_fields
-
+  def directory_matches(ignore_lookup_fields = [])
     matches = directory_lookup(ignore_lookup_fields)
-    matches.select do |match|
+    matches.map do |match|
       search = map_for_directory
-      # Only match fields not in ignore list
-      search.reject!{|key, value| ignore_match_fields.include? key}
-      changes = search.reject do |key, value|
-        UnicodeUtils.downcase(match.send(key).to_s) == UnicodeUtils.downcase(value.to_s)
+
+      perfect = []
+      search.each do |key, value|
+        perfect << key if UnicodeUtils.downcase(match.send(key).to_s) == UnicodeUtils.downcase(value.to_s)
       end
 
-      changes.empty?
-    end.present?
+      partial = []
+      search.each do |key, value|
+        partial << key if value.present? && UnicodeUtils.downcase(match.send(key).to_s).include?(UnicodeUtils.downcase(value.to_s))
+      end
+      partial -= perfect
+
+      bad = search.keys - perfect - partial
+
+      {:address => match, :perfect => perfect, :partial => partial, :bad => bad}
+    end
+  end
+
+  # Everything matches
+  def perfect_matches
+    directory_matches.collect do |match|
+      match[:address] if match[:partial].empty? && match[:bad].empty?
+    end.compact
+  end
+
+  def perfect_match?
+    perfect_matches.present?
+  end
+
+  # Everything is found, given or family name does is partial match
+  def great_matches
+    directory_matches.collect do |match|
+      next unless match[:bad].empty?
+
+      match[:address] if match[:partial].include?(:first_name) or match[:partial].include?(:last_name)
+    end.compact
+  end
+
+  def great_match?
+    great_matches.present?
   end
 end
