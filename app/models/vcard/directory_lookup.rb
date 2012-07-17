@@ -60,11 +60,18 @@ module Vcard::DirectoryLookup
     directory_matches.collect do |match|
       next unless match[:bad].empty?
 
-      match[:address] if match[:partial].include?(:first_name) or match[:partial].include?(:last_name)
+      match[:address] if match[:partial].include?(:first_name) || match[:partial].include?(:last_name)
     end.compact
   end
 
   def great_match?
     great_matches.present?
+  end
+
+  # Everything but given name matches, family name might be partial
+  def family_name_matches
+    directory_matches([:first_name]).collect do |match|
+      match[:address] if match[:bad] == [:first_name] && (match[:partial].empty? || match[:partial].include?(:last_name))
+    end.compact
   end
 end
