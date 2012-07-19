@@ -69,6 +69,7 @@ de:
 
   # DirectoryLookup
   directory_lookup:
+    title:         Treffer in Telefonbuch
     match_type:
       perfect:     Genauer Treffer
       great:       Ungenauer Name
