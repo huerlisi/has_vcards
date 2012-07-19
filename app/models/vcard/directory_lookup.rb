@@ -86,4 +86,18 @@ module Vcard::DirectoryLookup
   def family_name_match?
     family_name_matches.present?
   end
+
+  # Same address different names
+  def address_matches
+    directory_matches([:first_name, :last_name]).collect do |match|
+      match[:address] if match[:bad] == [:first_name, :last_name] && match[:partial].empty?
+    end.compact
+  end
+
+  # Similar name in same locality
+  def locality_matches
+    directory_matches([:first_name, :street]).collect do |match|
+      match[:address] if match[:bad] == [:street, :first_name] && (match[:partial].empty? || match[:partial].include?(:last_name))
+    end.compact
+  end
 end
