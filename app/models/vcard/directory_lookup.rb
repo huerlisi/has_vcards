@@ -2,7 +2,7 @@ module Vcard::DirectoryLookup
   def map_for_directory
     search = {}
     search[:first_name] = given_name
-    search[:last_name] = family_name
+    search[:family_name] = family_name
     search[:street] = street_address
     search[:zip_code] = postal_code
     search[:city] = locality
