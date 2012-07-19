@@ -75,11 +75,17 @@ module Vcard::DirectoryLookup
     return true
   end
 
+  def filtered_matches(filters)
+    ignores = filters.delete(:ignore) || []
+
+    directory_matches(ignores).collect do |match|
+      match[:address] if directory_filter(match, filters)
+    end.compact
+  end
+
   # Everything matches
   def perfect_matches
-    directory_matches.collect do |match|
-      match[:address] if directory_filter(match, :perfect => [:family_name, :first_name, :street, :city])
-    end.compact
+    filtered_matches(:perfect => [:family_name, :first_name, :street, :city])
   end
 
   def perfect_match?
@@ -88,9 +94,7 @@ module Vcard::DirectoryLookup
 
   # Everything is found, given or family name does is partial match
   def great_matches
-    directory_matches.collect do |match|
-      match[:address] if directory_filter(match, :partial_or_perfect => [:family_name, :first_name], :perfect => [:street, :city])
-    end.compact
+    filtered_matches(:partial_or_perfect => [:family_name, :first_name], :perfect => [:street, :city])
   end
 
   def great_match?
@@ -99,9 +103,7 @@ module Vcard::DirectoryLookup
 
   # Everything but given name matches, family name might be partial
   def family_name_matches
-    directory_matches([:first_name]).collect do |match|
-      match[:address] if directory_filter(match, :partial_or_perfect => [:family_name], :perfect => [:street, :city])
-    end.compact
+    filtered_matches(:ignore => [:first_name], :partial_or_perfect => [:family_name], :perfect => [:street, :city])
   end
 
   def family_name_match?
@@ -110,15 +112,11 @@ module Vcard::DirectoryLookup
 
   # Same address different names
   def address_matches
-    directory_matches([:first_name, :family_name]).collect do |match|
-      match[:address] if directory_filter(match, :perfect => [:street, :city])
-    end.compact
+    filtered_matches(:ignore => [:first_name, :family_name], :perfect => [:street, :city])
   end
 
   # Similar name in same locality
   def locality_matches
-    directory_matches([:first_name, :street]).collect do |match|
-      match[:address] if directory_filter(match, :partial_or_perfect => [:family_name], :perfect => [:city])
-    end.compact
+    filtered_matches(:ignore => [:first_name, :street], :partial_or_perfect => [:family_name], :perfect => [:city])
   end
 end
