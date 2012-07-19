@@ -38,8 +38,6 @@ module Vcard::DirectoryLookup
       perfect = []
       search.each do |key, value|
         perfect << key if normalize(match.send(key)) == normalize(value)
-        puts normalize(match.send(key)) if key == :street
-        puts normalize(value) if key == :street
       end
 
       partial = []
