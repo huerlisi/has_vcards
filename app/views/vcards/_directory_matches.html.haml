@@ -1,0 +1,4 @@
+- matches = vcard.send("#{match_type}_matches") - @seen_matches
+- if matches.present?
+  - @seen_matches += matches
+  = render :partial => 'address', :collection => matches

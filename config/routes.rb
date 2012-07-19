@@ -6,5 +6,10 @@ Rails.application.routes.draw do
   # Vcards
   resources :vcards do
     resources :phone_numbers
+
+    # DirectoryLookup
+    member do
+      get :directory_lookup
+    end
   end
 end

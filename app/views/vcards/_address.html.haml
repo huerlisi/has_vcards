@@ -1,6 +1,4 @@
-- vcard = vcard if defined?(vcard)
-- vcard ||= object.try(:vcard) if defined?(object)
-- vcard ||= @vcard
-- vcard ||= resource.try(:vcard) if defined?(resource)
-
-= full_address(vcard)
+%tr
+  %td= [address.first_name, address.family_name].join(" ")
+  %td= address.street
+  %td= [address.zip_code, address.city].join(" ")

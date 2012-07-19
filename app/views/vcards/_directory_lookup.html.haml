@@ -1,0 +1,21 @@
+#directory_lookup.modal.hide
+  = modal_header 'tel.search.ch'
+
+  .modal-body
+    %table.table
+      %tr{:style => 'border-top: none'}
+        %th{:style => 'border-top: none'}= [vcard.given_name, vcard.family_name].join(" ")
+        %th{:style => 'border-top: none'}= vcard.street_address
+        %th{:style => 'border-top: none'}= [vcard.postal_code, vcard.locality].join(" ")
+
+      - @seen_matches = []
+      %tr
+        %th{:colspan => 4}= t('directory_lookup.title')
+
+      = render 'directory_matches', :vcard => vcard, :match_type => :great
+      = render 'directory_matches', :vcard => vcard, :match_type => :family_name
+      = render 'directory_matches', :vcard => vcard, :match_type => :address
+      = render 'directory_matches', :vcard => vcard, :match_type => :locality
+
+  .modal-footer
+    = link_to 'Abbrechen', '#', :class => 'btn', 'data-dismiss' => 'modal'
