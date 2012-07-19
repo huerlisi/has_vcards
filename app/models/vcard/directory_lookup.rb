@@ -22,6 +22,14 @@ module Vcard::DirectoryLookup
     directory_lookup(ignore_fields).present?
   end
 
+  def normalize(value)
+    normalized_value = UnicodeUtils.downcase(value.to_s)
+    normalized_value.gsub!(/str\./, 'strasse')
+    normalized_value.gsub!(/str([ $])/, 'strasse\1')
+
+    normalized_value
+  end
+
   def directory_matches(ignore_lookup_fields = [])
     matches = directory_lookup(ignore_lookup_fields)
     matches.map do |match|
@@ -29,12 +37,14 @@ module Vcard::DirectoryLookup
 
       perfect = []
       search.each do |key, value|
-        perfect << key if UnicodeUtils.downcase(match.send(key).to_s) == UnicodeUtils.downcase(value.to_s)
+        perfect << key if normalize(match.send(key)) == normalize(value)
+        puts normalize(match.send(key)) if key == :street
+        puts normalize(value) if key == :street
       end
 
       partial = []
       search.each do |key, value|
-        partial << key if value.present? && UnicodeUtils.downcase(match.send(key).to_s).include?(UnicodeUtils.downcase(value.to_s))
+        partial << key if value.present? && normalize(match.send(key)).include?(normalize(value))
       end
       partial -= perfect
 
