@@ -84,4 +84,8 @@ module Vcard::DirectoryLookup
       match[:address] if match[:bad] == [:first_name] && (match[:partial].empty? || match[:partial].include?(:last_name))
     end.compact
   end
+
+  def family_name_match?
+    family_name_matches.present?
+  end
 end
