@@ -49,16 +49,36 @@ module Vcard::DirectoryLookup
       end
       partial -= perfect
 
-      bad = search.keys - perfect - partial
+      bad = search.keys - perfect - partial - ignore_lookup_fields
 
-      {:address => match, :perfect => perfect, :partial => partial, :bad => bad}
+      {:address => match, :perfect => perfect, :partial => partial, :bad => bad, :ignore => ignore_lookup_fields}
     end
+  end
+
+  def directory_filter(match, filter = {})
+    # Exact filters
+    filter[:perfect].each do |field|
+      return false unless match[:perfect].include?(field)
+    end if filter[:perfect]
+    filter[:partial].each do |field|
+      return false unless match[:partial].include?(field)
+    end if filter[:partial]
+    filter[:bad].each do |field|
+      return false unless match[:bad].include?(field)
+    end if filter[:bad]
+
+    # "Better than" filters
+    filter[:partial_or_perfect].each do |field|
+      return false unless match[:perfect].include?(field) || match[:partial].include?(field)
+    end if filter[:partial_or_perfect]
+
+    return true
   end
 
   # Everything matches
   def perfect_matches
     directory_matches.collect do |match|
-      match[:address] if match[:partial].empty? && match[:bad].empty?
+      match[:address] if directory_filter(match, :perfect => [:family_name, :first_name, :street, :city])
     end.compact
   end
 
@@ -69,9 +89,7 @@ module Vcard::DirectoryLookup
   # Everything is found, given or family name does is partial match
   def great_matches
     directory_matches.collect do |match|
-      next unless match[:bad].empty?
-
-      match[:address] if match[:partial].include?(:first_name) || match[:partial].include?(:last_name)
+      match[:address] if directory_filter(match, :partial_or_perfect => [:family_name, :first_name], :perfect => [:street, :city])
     end.compact
   end
 
@@ -82,7 +100,7 @@ module Vcard::DirectoryLookup
   # Everything but given name matches, family name might be partial
   def family_name_matches
     directory_matches([:first_name]).collect do |match|
-      match[:address] if match[:bad] == [:first_name] && (match[:partial].empty? || match[:partial].include?(:last_name))
+      match[:address] if directory_filter(match, :partial_or_perfect => [:family_name], :perfect => [:street, :city])
     end.compact
   end
 
@@ -92,15 +110,15 @@ module Vcard::DirectoryLookup
 
   # Same address different names
   def address_matches
-    directory_matches([:first_name, :last_name]).collect do |match|
-      match[:address] if match[:bad] == [:first_name, :last_name] && match[:partial].empty?
+    directory_matches([:first_name, :family_name]).collect do |match|
+      match[:address] if directory_filter(match, :perfect => [:street, :city])
     end.compact
   end
 
   # Similar name in same locality
   def locality_matches
     directory_matches([:first_name, :street]).collect do |match|
-      match[:address] if match[:bad] == [:street, :first_name] && (match[:partial].empty? || match[:partial].include?(:last_name))
+      match[:address] if directory_filter(match, :partial_or_perfect => [:family_name], :perfect => [:city])
     end.compact
   end
 end
