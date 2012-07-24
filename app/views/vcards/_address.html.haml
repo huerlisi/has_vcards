@@ -1,4 +1,5 @@
 %tr
-  %td= [address.first_name, address.family_name].join(" ")
+  %td
+    = link_to [address.first_name, address.family_name].join(" "), directory_update_vcard_path(vcard, :vcard => address.to_vcard_attributes), :method => :post
   %td= address.street
   %td= [address.zip_code, address.city].join(" ")

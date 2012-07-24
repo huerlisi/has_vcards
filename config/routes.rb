@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     # DirectoryLookup
     member do
       get :directory_lookup
+      post :directory_update
     end
   end
 end
