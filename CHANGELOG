@@ -1,0 +1,3 @@
+0.17.2 (unreleased)
+======
+* Add migration to add time stamps to all has_vcards tables
