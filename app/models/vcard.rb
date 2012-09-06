@@ -27,7 +27,7 @@ class Vcard < ActiveRecord::Base
   belongs_to :object, :polymorphic => true
 
   # Validations
-  include I18nRailsHelpers
+  include I18nHelpers
 
   def validate_name
     if full_name.blank?

@@ -2,7 +2,7 @@ class Address < ActiveRecord::Base
   belongs_to :vcard
   
   # Validations
-  include I18nRailsHelpers
+  include I18nHelpers
 
   def validate_address
     errors.add_on_blank(:postal_code)
