@@ -13,4 +13,7 @@ Rails.application.routes.draw do
       post :directory_update
     end
   end
+
+  # Directory Lookup
+  get 'directory_lookup/search' => 'directory_lookup#search'
 end

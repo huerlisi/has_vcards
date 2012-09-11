@@ -1,5 +1,5 @@
 %tr
   %td
-    = link_to [address.first_name, address.family_name].join(" "), directory_update_vcard_path(vcard, :vcard => address.to_vcard_attributes), :method => :post
+    = link_to [address.first_name, address.family_name].join(" "), '#', 'data-directory-lookup-selector' => @selector, 'data-directory-lookup-attributes' => h(address.to_vcard_attributes.to_json)
   %td= address.street
   %td= [address.zip_code, address.city].join(" ")

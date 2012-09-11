@@ -12,10 +12,10 @@
       %tr
         %th{:colspan => 4}= t('directory_lookup.title')
 
-      = render 'directory_matches', :vcard => vcard, :match_type => :great
-      = render 'directory_matches', :vcard => vcard, :match_type => :family_name
-      = render 'directory_matches', :vcard => vcard, :match_type => :address
-      = render 'directory_matches', :vcard => vcard, :match_type => :locality
+      = render 'vcards/directory_matches', :vcard => vcard, :match_type => :great
+      = render 'vcards/directory_matches', :vcard => vcard, :match_type => :family_name
+      = render 'vcards/directory_matches', :vcard => vcard, :match_type => :address
+      = render 'vcards/directory_matches', :vcard => vcard, :match_type => :locality
 
   .modal-footer
     = link_to t_action(:cancel), '#', :class => 'btn', 'data-dismiss' => 'modal'
