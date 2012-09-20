@@ -13,8 +13,8 @@ end
 class Vcard < ActiveRecord::Base
   has_one :address, :autosave => true, :validate => true
   accepts_nested_attributes_for :address
-  delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :to => :address
-  delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :to => :address
+  delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, :to => :address
+  delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :zip_locality=, :to => :address
   include HasAddress
 
   has_many :addresses, :autosave => true, :validate => true

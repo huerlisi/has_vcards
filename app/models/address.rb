@@ -23,4 +23,13 @@ class Address < ActiveRecord::Base
       :locality => locality
     )
   end
+
+  # Composed attributes
+  def zip_locality
+    "#{postal_code} #{locality}"
+  end
+
+  def zip_locality=(value)
+    self.postal_code, self.locality = value.split(' ', 2)
+  end
 end
