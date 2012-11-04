@@ -1,4 +1,6 @@
 class Address < ActiveRecord::Base
+  # Access restrictions
+  attr_accessible :street_address, :extended_address, :post_office_box
   belongs_to :vcard
   
   # Validations
