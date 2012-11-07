@@ -1,6 +1,9 @@
 class Address < ActiveRecord::Base
+  # Access restrictions
+  attr_accessible :extended_address, :street_address, :post_office_box, :postal_code, :locality
+
   belongs_to :vcard
-  
+
   # Validations
   include I18nHelpers
 

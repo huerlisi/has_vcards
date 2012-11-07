@@ -11,6 +11,9 @@ module HasAddress
 end
 
 class Vcard < ActiveRecord::Base
+  # Access restrictions
+  attr_accessible :full_name, :address_attributes
+
   has_one :address, :autosave => true, :validate => true
   accepts_nested_attributes_for :address
   delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, :to => :address
