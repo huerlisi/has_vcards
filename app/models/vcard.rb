@@ -12,12 +12,14 @@ end
 
 class Vcard < ActiveRecord::Base
   # Access restrictions
-  attr_accessible :full_name, :address_attributes
+  attr_accessible :full_name, :honorific_prefix, :family_name, :given_name
 
   has_one :address, :autosave => true, :validate => true
   accepts_nested_attributes_for :address
+  attr_accessible :address_attributes
   delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, :to => :address
   delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :zip_locality=, :to => :address
+  attr_accessible :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality
   include HasAddress
 
   has_many :addresses, :autosave => true, :validate => true
