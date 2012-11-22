@@ -98,7 +98,7 @@ class Vcard < ActiveRecord::Base
     end
   end
   accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }, :allow_destroy => true
-
+  attr_accessible :contacts_attributes
   # Salutation
   def salutation
     case honorific_prefix
