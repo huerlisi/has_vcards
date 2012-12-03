@@ -1,6 +1,6 @@
 class PhoneNumber < ActiveRecord::Base
   # Access restrictions
-  attr_accessible :phone_number_type
+  attr_accessible :phone_number_type, :number
 
   # Vcard association
   belongs_to :vcard, :inverse_of => :contacts

@@ -9,6 +9,8 @@ module HasVcards
       ActionController::Base.helper HasVcardsHelper
 
       ActiveRecord::Base.extend(HasVcardsClassMethods)
+
+      SwissMatch::Address.send :include, Vcard::DirectoryAddress if defined?(SwissMatch::Address)
     end
   end
 end

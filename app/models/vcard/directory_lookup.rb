@@ -18,7 +18,7 @@ module Vcard::DirectoryLookup
     # TODO:
     # We should fetch additional pages if the result indicates there
     # are more pages.
-    ::SwissMatch.directory_service.addresses(search, :per_page => 100)
+    ::SwissMatch.directory_service.addresses(search, :per_page => 10)
   end
 
   def directory_found?(ignore_fields = [])

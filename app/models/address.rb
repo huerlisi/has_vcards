@@ -1,10 +1,13 @@
+# encoding: utf-8
+
 class Address < ActiveRecord::Base
   # Access restrictions
-  attr_accessible :street_address, :extended_address, :post_office_box
+  attr_accessible :extended_address, :street_address, :post_office_box, :postal_code, :locality, :zip_locality
+
   belongs_to :vcard
-  
+
   # Validations
-  include I18nRailsHelpers
+  include I18nHelpers
 
   def validate_address
     errors.add_on_blank(:postal_code)
@@ -24,5 +27,14 @@ class Address < ActiveRecord::Base
       :postal_code => postal_code,
       :locality => locality
     )
+  end
+
+  # Composed attributes
+  def zip_locality
+    "#{postal_code} #{locality}"
+  end
+
+  def zip_locality=(value)
+    self.postal_code, self.locality = value.split(' ', 2)
   end
 end

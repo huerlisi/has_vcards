@@ -12,12 +12,14 @@ end
 
 class Vcard < ActiveRecord::Base
   # Access restrictions
-  attr_accessible :honorific_prefix, :family_name, :given_name, :address_attributes
+  attr_accessible :full_name, :honorific_prefix, :family_name, :given_name
 
   has_one :address, :autosave => true, :validate => true
   accepts_nested_attributes_for :address
-  delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :to => :address
-  delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :to => :address
+  attr_accessible :address_attributes
+  delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, :to => :address
+  delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :zip_locality=, :to => :address
+  attr_accessible :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality
   include HasAddress
 
   has_many :addresses, :autosave => true, :validate => true
@@ -30,7 +32,7 @@ class Vcard < ActiveRecord::Base
   belongs_to :object, :polymorphic => true
 
   # Validations
-  include I18nRailsHelpers
+  include I18nHelpers
 
   def validate_name
     if full_name.blank?
@@ -96,7 +98,7 @@ class Vcard < ActiveRecord::Base
     end
   end
   accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }, :allow_destroy => true
-
+  attr_accessible :contacts_attributes
   # Salutation
   def salutation
     case honorific_prefix
