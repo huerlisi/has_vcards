@@ -51,7 +51,9 @@ class Vcard < ActiveRecord::Base
   end
 
   def abbreviated_name
-    "#{given_name[0..0]}. #{family_name}"
+    return read_attribute(:full_name) if read_attribute(:full_name)
+
+    [given_name.try(:first).try(:upcase), family_name].compact.join(". ")
   end
 
   # Advanced finders
