@@ -1,3 +1,12 @@
+0.20.0
+======
+* Added attr_accessible declarations to models.
+* Add encoding hint do Address model.
+* Include HonorificPrefix class from CyDoc.
+* Added more views, based on Bookyt.
+* Add translation for address key.
+* Vcard.abbreviated_name fixed to support both full_name and given/family name.
+
 0.19.0
 ======
 * Add support for composed attribute zip_locality including a autocompletion
