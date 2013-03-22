@@ -1,8 +1,25 @@
 = f.simple_fields_for :vcard do |vcard|
-  = vcard.input :full_name, :input_html => {"data-autofocus" => true}
+  - if defined?(full_vcard)
+    .row-fluid
+      .span12= vcard.input :full_name, :input_html => {"data-autofocus" => true}
+  - else
+    .row-fluid
+      .span12= vcard.input :honorific_prefix, :collection => HonorificPrefix.find(:all, :order => 'sex DESC, position').collect { |prefix| prefix.name }
+    .row-fluid
+      .span12
+        .control-group{:class => "#{'error' if vcard.object.errors.include?(:family_name) or vcard.object.errors.include?(:given_name)}"}
+          %label.control-label= "#{t_attr(:family_name, Vcard)}, #{t_attr(:given_name, Vcard)}"
+          .controls
+            = vcard.input :family_name, :wrapper => :inline, :input_html => {'data-autofocus' => true}
+            = vcard.input :given_name, :wrapper => :inline
   = vcard.fields_for :address do |address|
-    = address.input :extended_address
-    = address.input :street_address
-    = address.input :post_office_box
-    = address.input :postal_code, :wrapper_html => {:class => 'col1'}
-    = address.input :locality, :wrapper_html => {:class => 'col2'}
+    .row-fluid
+      .span12= address.input :extended_address
+    .row-fluid
+      .span12= address.input :street_address
+    .row-fluid
+      .span12= address.input :post_office_box
+    .row-fluid
+      .span12= address.input :postal_code, :wrapper_html => {:class => 'col1'}
+    .row-fluid
+      .span12= address.input :locality, :wrapper_html => {:class => 'col2'}
