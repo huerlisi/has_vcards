@@ -1,0 +1,11 @@
+script: "bundle exec rake spec"
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+
+bundler_args: "--binstubs --without development"
+
+# IRC notification
+notifications:
+  irc: "irc.freenode.org#cyt"
