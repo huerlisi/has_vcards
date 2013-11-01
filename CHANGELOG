@@ -1,6 +1,8 @@
 0.20.2
 ======
 * Properly set dependencies in gemspec and require.
+* Drop jeweler support.
+* Add travis-ci configuration.
 
 0.20.1
 ======
