@@ -1,5 +1,8 @@
 require 'has_vcards'
 require 'rails'
+require 'inherited_resources'
+require 'simple_form'
+require 'i18n_rails_helpers'
 
 module HasVcards
   class Railtie < Rails::Engine

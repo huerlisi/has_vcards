@@ -28,4 +28,6 @@ Gem::Specification.new do |s|
   # Dependencies
   s.add_dependency(%q<rails>, ["~> 3.0"])
   s.add_dependency(%q<inherited_resources>)
+  s.add_dependency(%q<simple_form>)
+  s.add_dependency(%q<i18n_rails_helpers>)
 end
