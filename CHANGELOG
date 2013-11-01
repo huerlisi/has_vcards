@@ -1,3 +1,7 @@
+0.20.2
+======
+* Properly set dependencies in gemspec and require.
+
 0.20.1
 ======
 * Fix title in people/address_form partial.
