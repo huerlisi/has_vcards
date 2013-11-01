@@ -1,3 +1,8 @@
+0.20.1
+======
+* Fix title in people/address_form partial.
+* Support full_vcard form fields.
+
 0.20.0
 ======
 * Added attr_accessible declarations to models.
