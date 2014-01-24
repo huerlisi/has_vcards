@@ -101,29 +101,10 @@ class Vcard < ActiveRecord::Base
   end
   accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }, :allow_destroy => true
   attr_accessible :contacts_attributes
+
   # Salutation
   def salutation
-    case honorific_prefix
-    when 'Herr Dr. med.'
-      result = "Sehr geehrter Herr Dr. " + family_name
-    when 'Frau Dr. med.'
-      result = "Sehr geehrte Frau Dr. " + family_name
-    when 'Herr Dr.'
-      result = "Sehr geehrter Herr Dr. " + family_name
-    when 'Frau Dr.'
-      result = "Sehr geehrte Frau Dr. " + family_name
-    when 'Herr'
-      result = "Sehr geehrter Herr " + family_name
-    when 'Frau'
-      result = "Sehr geehrte Frau " + family_name
-    when 'Br.'
-      result = "Sehr geehrter Bruder " + family_name
-    when 'Sr.'
-      result = "Sehr geehrte Schwester " + family_name
-    else
-      result = "Sehr geehrte Damen und Herren"
-    end
-    return result
+    I18n.translate(honorific_prefix.presence || :default, :scope => 'salutation', :family_name => family_name, :default => :default)
   end
 
   # SwissMatch

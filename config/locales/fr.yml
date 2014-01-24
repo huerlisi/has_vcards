@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-de:
+fr:
   has_vcards:
     address:
       to_s: "%{street_address}, %{postal_code} %{locality}"
@@ -80,12 +80,12 @@ de:
 
   # Honorific Prefixes
   salutation:
-    'Herr Dr. med.': Sehr geehrter Herr Dr. %{family_name}
-    'Frau Dr. med.': Sehr geehrte Frau Dr. %{family_name}
-    'Herr Dr.': Sehr geehrter Herr Dr. %{family_name}
-    'Frau Dr.': Sehr geehrte Frau Dr. %{family_name}
-    'Herr': Sehr geehrter Herr %{family_name}
-    'Frau': Sehr geehrte Frau %{family_name}
-    'Br.': Sehr geehrter Bruder %{family_name}
-    'Sr.': Sehr geehrte Schwester %{family_name}
-    default: Sehr geehrte Damen und Herren
+    'Herr Dr. med.': Sehr geehrter Herr Dr.
+    'Frau Dr. med.': Sehr geehrte Frau Dr.
+    'Herr Dr.': Sehr geehrter Herr Dr.
+    'Frau Dr.': Sehr geehrte Frau Dr.
+    'Herr': Monsieur
+    'Frau': Madame
+    'Br.': Sehr geehrter Bruder
+    'Sr.': Sehr geehrte Schwester
+    default: Mesdames, Messieurs,
