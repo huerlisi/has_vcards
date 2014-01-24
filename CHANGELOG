@@ -1,3 +1,7 @@
+0.20.3
+======
+* Use locales for Vcard#salutation.
+
 0.20.2
 ======
 * Properly set dependencies in gemspec and require.
