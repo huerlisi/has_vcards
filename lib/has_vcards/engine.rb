@@ -6,6 +6,13 @@ require 'i18n_rails_helpers'
 
 module HasVcards
   class Engine < Rails::Engine
+    config.generators do |g|
+      g.stylesheets false
+
+      g.test_framework :rspec
+      g.fixture_replacement :factory_girl
+    end
+
     initializer :after_initialize do
       ActionController::Base.helper HasVcardsHelper
       ActiveRecord::Base.extend HasVcards::ClassMethods
