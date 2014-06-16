@@ -2,7 +2,7 @@
 
 class Address < ActiveRecord::Base
   # Access restrictions
-  attr_accessible :extended_address, :street_address, :post_office_box, :postal_code, :locality, :zip_locality
+  attr_accessible :extended_address, :street_address, :post_office_box, :postal_code, :locality, :zip_locality if defined?(ActiveModel::MassAssignmentSecurity)
 
   belongs_to :vcard
 

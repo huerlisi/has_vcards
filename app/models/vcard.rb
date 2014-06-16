@@ -12,14 +12,14 @@ end
 
 class Vcard < ActiveRecord::Base
   # Access restrictions
-  attr_accessible :full_name, :honorific_prefix, :family_name, :given_name
+  attr_accessible :full_name, :honorific_prefix, :family_name, :given_name if defined?(ActiveModel::MassAssignmentSecurity)
 
   has_one :address, :autosave => true, :validate => true
   accepts_nested_attributes_for :address
-  attr_accessible :address_attributes
+  attr_accessible :address_attributes if defined?(ActiveModel::MassAssignmentSecurity)
   delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, :to => :address
   delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :zip_locality=, :to => :address
-  attr_accessible :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality
+  attr_accessible :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality if defined?(ActiveModel::MassAssignmentSecurity)
   include HasAddress
 
   has_many :addresses, :autosave => true, :validate => true
@@ -100,7 +100,7 @@ class Vcard < ActiveRecord::Base
     end
   end
   accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }, :allow_destroy => true
-  attr_accessible :contacts_attributes
+  attr_accessible :contacts_attributes if defined?(ActiveModel::MassAssignmentSecurity)
 
   # Salutation
   def salutation

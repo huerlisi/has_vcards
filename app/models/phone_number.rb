@@ -1,6 +1,6 @@
 class PhoneNumber < ActiveRecord::Base
   # Access restrictions
-  attr_accessible :phone_number_type, :number
+  attr_accessible :phone_number_type, :number if defined?(ActiveModel::MassAssignmentSecurity)
 
   # Vcard association
   belongs_to :vcard, :inverse_of => :contacts
@@ -30,7 +30,7 @@ class PhoneNumber < ActiveRecord::Base
       phone_number_type
     end
   end
-  
+
   # String
   def to_s(separator = " ", format = :default)
     case format
