@@ -1,25 +1,38 @@
-# SQLite version 3.x
-#   gem install sqlite3
+# This is to allow testing on different DB systems by setting
+# the DB environment variable.
 #
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
+# MySQL and Postgresql username and password are set to
+# match expecations on Travis-CI to simplify automatic testing.
 #
-default: &default
+# Set the DB environment variable when running specs etc.
+#
+# sqlite3 is the default.
+
+sqlite: &sqlite
   adapter: sqlite3
   pool: 5
   timeout: 5000
 
-development:
-  <<: *default
-  database: db/development.sqlite3
+mysql: &mysql
+  adapter: mysql2
+  username: root
+  password:
+  database: has_vcard_test
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+postgresql: &postgresql
+  adapter: postgresql
+  username: postgres
+  password:
+  database: has_vcard_test
+
 test:
-  <<: *default
-  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+  host: localhost
+  <<: *<%= ENV['DB'] || 'sqlite' %>
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+development:
+  pool: 5
+  timeout: 5000
+  host: localhost
+  <<: *<%= ENV['DB'] || 'mysql' %>
