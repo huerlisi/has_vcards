@@ -15,7 +15,7 @@ env:
 before_script:
   - bundle exec rake app:db:setup
 
-bundler_args: "--binstubs --without development"
+bundler_args: "--binstubs"
 
 # IRC notification
 notifications:
