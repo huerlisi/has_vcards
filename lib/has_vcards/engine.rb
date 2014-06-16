@@ -8,7 +8,7 @@ module HasVcards
   class Engine < Rails::Engine
     initializer :after_initialize do
       ActionController::Base.helper HasVcardsHelper
-      ActiveRecord::Base.extend(HasVcardsClassMethods)
+      ActiveRecord::Base.extend HasVcards::ClassMethods
       SwissMatch::Address.send :include, Vcard::DirectoryAddress if defined?(SwissMatch::Address)
     end
   end
