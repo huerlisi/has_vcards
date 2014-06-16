@@ -1,4 +1,7 @@
-script: "rake spec"
+language: ruby
+cache: bundler
+
+script: "bundle exec rake"
 
 rvm:
   - 1.9.3
