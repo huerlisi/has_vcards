@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    has_vcards (0.20.3)
+    has_vcards (1.0.0.rc0)
       i18n_rails_helpers
       inherited_resources
       rails (> 3.2.0)
@@ -63,9 +63,9 @@ GEM
     hike (1.2.3)
     i18n (0.6.9)
     i18n_rails_helpers (1.4.12)
-    inherited_resources (1.4.1)
+    inherited_resources (1.5.0)
       has_scope (~> 0.6.0.rc)
-      responders (~> 1.0.0.rc)
+      responders (~> 1.0)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -108,7 +108,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
-    responders (1.0.0)
+    responders (1.1.0)
       railties (>= 3.2, < 5)
     rspec-core (3.0.0)
       rspec-support (~> 3.0.0)
