@@ -1,5 +1,5 @@
 class PhoneNumbersController < ApplicationController
-  # User inherited resources logic
+  # Use inherited resources logic
   inherit_resources
   respond_to :html, :js
 
