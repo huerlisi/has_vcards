@@ -4,7 +4,7 @@ PATH
     has_vcards (0.20.3)
       i18n_rails_helpers
       inherited_resources
-      rails (~> 4.1.1)
+      rails (> 3.2.0)
       simple_form
 
 GEM
