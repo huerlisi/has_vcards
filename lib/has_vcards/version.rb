@@ -1,3 +1,3 @@
 module HasVcards
-  VERSION = '0.20.3'
+  VERSION = '1.0.0.rc0'
 end
