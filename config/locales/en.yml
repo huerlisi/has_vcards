@@ -6,12 +6,12 @@ en:
 
   activerecord:
     models:
-      vcard:              VCard
-      address:            Address
-      phone_number:       Contact
+      has_vcards/vcard:              VCard
+      has_vcards/address:            Address
+      has_vcards/phone_number:       Contact
 
     attributes:
-      vcard:
+      has_vcards/vcard:
         full_name:        Name
         nickname:         Nickname
         family_name:      Family name
@@ -32,7 +32,7 @@ en:
         phone_number:     Phone
         mobile_number:    Mobile
         fax_number:       Fax
-      address:
+      has_vcards/address:
         post_office_box:  Post Office Box
         extended_address: Extended address
         extended_address: Adresszusatz
@@ -42,7 +42,7 @@ en:
         postal_code:      PLZ
         country_name:     Land
         address_type:     Art
-      phone_number:
+      has_vcards/phone_number:
         number:           Number
         phone_number_type: Number Type
 

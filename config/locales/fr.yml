@@ -18,12 +18,12 @@ fr:
 
   activerecord:
     models:
-      vcard:              Kontakt
-      address:            Adresse
-      phone_number:       Kontakt
+      has_vcards/vcard:              Kontakt
+      has_vcards/address:            Adresse
+      has_vcards/phone_number:       Kontakt
 
     attributes:
-      vcard:
+      has_vcards/vcard:
         full_name:        Name
         nickname:         Spitzname
         family_name:      Nachname
@@ -44,7 +44,7 @@ fr:
         phone_number:     Telefon
         mobile_number:    Mobile
         fax_number:       Fax
-      address:
+      has_vcards/address:
         post_office_box:  Postfach
         extended_address: Adresszusatz
         street_address:   Strasse
@@ -53,7 +53,7 @@ fr:
         postal_code:      PLZ
         country_name:     Land
         address_type:     Art
-      phone_number:
+      has_vcards/phone_number:
         number:           Nummer
         phone_number_type: Nummer-Typ
 
