@@ -4,6 +4,7 @@ This is a major release bringing lots of cleanups. And of course some big featur
 * Compatibility with Rails 4.x
 * A spec suite, continuously running on Travis CI
 * Support for PostgreSQL, MySQL and SQLite
+* Fully isolated, mountable engine
 
 0.20.3
 ======
