@@ -1,5 +1,5 @@
 # Routes
-Rails.application.routes.draw do
+HasVcards::Engine.routes.draw do
   # Phone Numbers
   resources :phone_numbers
 

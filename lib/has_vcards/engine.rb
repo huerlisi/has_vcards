@@ -6,6 +6,8 @@ require 'i18n_rails_helpers'
 
 module HasVcards
   class Engine < Rails::Engine
+    isolate_namespace HasVcards
+
     config.generators do |g|
       g.stylesheets false
 
@@ -14,7 +16,7 @@ module HasVcards
     end
 
     initializer :after_initialize do
-      ActionController::Base.helper HasVcardsHelper
+      ActionController::Base.helper HasVcards::ApplicationHelper
       ActiveRecord::Base.extend HasVcards::ClassMethods
       SwissMatch::Address.send :include, Vcard::DirectoryAddress if defined?(SwissMatch::Address)
     end
