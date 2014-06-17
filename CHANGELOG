@@ -1,3 +1,10 @@
+1.0.0.rc0 (unreleased)
+=========
+This is a major release bringing lots of cleanups. And of course some big features:
+* Compatibility with Rails 4.x
+* A spec suite, continuously running on Travis CI
+* Support for PostgreSQL, MySQL and SQLite
+
 0.20.3
 ======
 * Use locales for Vcard#salutation.
