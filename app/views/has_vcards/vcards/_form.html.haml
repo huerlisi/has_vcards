@@ -7,7 +7,7 @@
       .span12= vcard.input :honorific_prefix, :collection => HonorificPrefix.find(:all, :order => 'sex DESC, position').collect { |prefix| prefix.name }
     .row-fluid
       .span12
-        .control-group{:class => "#{'error' if vcard.object.errors.include?(:family_name) or vcard.object.errors.include?(:given_name)}"}
+        .control-group{:class => "#{'error' if vcard.reference.errors.include?(:family_name) or vcard.reference.errors.include?(:given_name)}"}
           %label.control-label= "#{t_attr(:family_name, Vcard)}, #{t_attr(:given_name, Vcard)}"
           .controls
             = vcard.input :family_name, :wrapper => :inline, :input_html => {'data-autofocus' => true}

@@ -16,7 +16,7 @@ module HasVcards
 
       @vcard.save
 
-      redirect_to @vcard.object
+      redirect_to @vcard.reference
     end
   end
 end

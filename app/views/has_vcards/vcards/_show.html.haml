@@ -1,5 +1,5 @@
 - vcard = vcard if defined?(vcard)
-- vcard ||= object.try(:vcard) if defined?(object)
+- vcard ||= reference.try(:vcard) if defined?(reference)
 - vcard ||= @vcard
 - vcard ||= resource.try(:vcard) if defined?(resource)
 = show_for vcard do |vcard|
