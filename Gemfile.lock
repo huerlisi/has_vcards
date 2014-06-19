@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     has_vcards (1.0.0.rc0)
+      haml
       i18n_rails_helpers
       inherited_resources
       rails (> 3.2.0)
@@ -57,6 +58,8 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    haml (4.0.5)
+      tilt
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
