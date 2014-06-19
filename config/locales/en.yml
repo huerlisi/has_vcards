@@ -57,3 +57,13 @@ en:
       region:           Region
       postal_code:      PLZ
       country_name:     Land
+
+  # DirectoryLookup
+  directory_lookup:
+    title:         Treffer in Telefonbuch
+    match_type:
+      perfect:     Genauer Treffer
+      great:       Ungenauer Name
+      family_name: Anderer Vorname
+      address:     An dieser Adresse
+      locality:    In diesem Ort

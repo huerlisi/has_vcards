@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619102041) do
+ActiveRecord::Schema.define(version: 20140619121756) do
 
   create_table "has_vcards_addresses", force: true do |t|
     t.string   "post_office_box",  limit: 50
@@ -28,12 +28,6 @@ ActiveRecord::Schema.define(version: 20140619102041) do
   end
 
   add_index "has_vcards_addresses", ["vcard_id"], name: "addresses_vcard_id_index"
-
-  create_table "has_vcards_honorific_prefixes", force: true do |t|
-    t.integer "sex"
-    t.string  "name"
-    t.integer "position"
-  end
 
   create_table "has_vcards_phone_numbers", force: true do |t|
     t.string   "number",            limit: 50
