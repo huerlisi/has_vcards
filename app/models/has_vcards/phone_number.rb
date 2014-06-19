@@ -5,7 +5,6 @@ module HasVcards
 
     # Vcard association
     belongs_to :vcard, :inverse_of => :contacts
-    belongs_to :object, :polymorphic => true
 
     # Validation
     validates_presence_of :number

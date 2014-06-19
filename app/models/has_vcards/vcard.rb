@@ -30,7 +30,7 @@ module HasVcards
     scope :by_name, lambda {|name| {:conditions => self.by_name_conditions(name)}}
     scope :with_address, joins(:address).includes(:address)
 
-    belongs_to :object, :polymorphic => true
+    belongs_to :reference, :polymorphic => true
 
     # Validations
     include I18nHelpers
@@ -93,7 +93,7 @@ module HasVcards
     end
 
     # Phone numbers
-    has_many :contacts, :class_name => 'PhoneNumber', :as => :object, :inverse_of => :vcard do
+    has_many :contacts, :class_name => 'PhoneNumber', :inverse_of => :vcard do
       def build_defaults
         ['Tel. geschäft', 'Tel. privat', 'Handy', 'E-Mail'].map{ |phone_number_type|
           build(:phone_number_type => phone_number_type) unless exists?(:phone_number_type => phone_number_type)

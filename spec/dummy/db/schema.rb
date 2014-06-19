@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617113710) do
+ActiveRecord::Schema.define(version: 20140619102041) do
 
   create_table "has_vcards_addresses", force: true do |t|
     t.string   "post_office_box",  limit: 50
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140617113710) do
     t.datetime "updated_at"
   end
 
-  add_index "has_vcards_addresses", ["vcard_id"], name: "addresses_vcard_id_index", using: :btree
+  add_index "has_vcards_addresses", ["vcard_id"], name: "addresses_vcard_id_index"
 
   create_table "has_vcards_honorific_prefixes", force: true do |t|
     t.integer "sex"
@@ -39,15 +39,12 @@ ActiveRecord::Schema.define(version: 20140617113710) do
     t.string   "number",            limit: 50
     t.string   "phone_number_type", limit: 50
     t.integer  "vcard_id"
-    t.integer  "object_id"
-    t.string   "object_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "has_vcards_phone_numbers", ["object_id", "object_type"], name: "index_has_vcards_phone_numbers_on_object_id_and_object_type", using: :btree
-  add_index "has_vcards_phone_numbers", ["phone_number_type"], name: "index_has_vcards_phone_numbers_on_phone_number_type", using: :btree
-  add_index "has_vcards_phone_numbers", ["vcard_id"], name: "phone_numbers_vcard_id_index", using: :btree
+  add_index "has_vcards_phone_numbers", ["phone_number_type"], name: "index_has_vcards_phone_numbers_on_phone_number_type"
+  add_index "has_vcards_phone_numbers", ["vcard_id"], name: "phone_numbers_vcard_id_index"
 
   create_table "has_vcards_vcards", force: true do |t|
     t.string   "full_name",        limit: 50
@@ -59,13 +56,13 @@ ActiveRecord::Schema.define(version: 20140617113710) do
     t.string   "honorific_suffix", limit: 50
     t.boolean  "active",                      default: true
     t.string   "type"
-    t.integer  "object_id"
-    t.string   "object_type"
+    t.integer  "reference_id"
+    t.string   "reference_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "has_vcards_vcards", ["active"], name: "index_has_vcards_vcards_on_active", using: :btree
-  add_index "has_vcards_vcards", ["object_id", "object_type"], name: "index_has_vcards_vcards_on_object_id_and_object_type", using: :btree
+  add_index "has_vcards_vcards", ["active"], name: "index_has_vcards_vcards_on_active"
+  add_index "has_vcards_vcards", ["reference_id", "reference_type"], name: "index_has_vcards_vcards_on_reference_id_and_reference_type"
 
 end
