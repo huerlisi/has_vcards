@@ -4,11 +4,11 @@ module HasVcards
       class_eval <<-end_eval
         scope :by_name, lambda {|name| {:include => :vcard, :order => 'vcards.full_name', :conditions => Vcard.by_name_conditions(name)}}
 
-        has_one :vcard, :as => 'reference', :autosave => true, :validate => true
+        has_one :vcard, :class_name => 'HasVcards::Vcard', :as => 'reference', :autosave => true, :validate => true
         delegate :full_name, :nickname, :family_name, :given_name, :additional_name, :honorific_prefix, :honorific_suffix, :to => :vcard
         delegate :full_name=, :nickname=, :family_name=, :given_name=, :additional_name=, :honorific_prefix=, :honorific_suffix=, :to => :vcard
 
-        has_many :vcards, :as => 'reference', :autosave => true, :validate => true
+        has_many :vcards, :class_name => 'HasVcards::Vcard', :as => 'reference', :autosave => true, :validate => true
 
         def vcard_with_autobuild
           vcard_without_autobuild || build_vcard

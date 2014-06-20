@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619121756) do
+ActiveRecord::Schema.define(version: 20140620151641) do
 
   create_table "has_vcards_addresses", force: true do |t|
     t.string   "post_office_box",  limit: 50
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140619121756) do
     t.datetime "updated_at"
   end
 
-  add_index "has_vcards_addresses", ["vcard_id"], name: "addresses_vcard_id_index"
+  add_index "has_vcards_addresses", ["vcard_id"], name: "addresses_vcard_id_index", using: :btree
 
   create_table "has_vcards_phone_numbers", force: true do |t|
     t.string   "number",            limit: 50
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20140619121756) do
     t.datetime "updated_at"
   end
 
-  add_index "has_vcards_phone_numbers", ["phone_number_type"], name: "index_has_vcards_phone_numbers_on_phone_number_type"
-  add_index "has_vcards_phone_numbers", ["vcard_id"], name: "phone_numbers_vcard_id_index"
+  add_index "has_vcards_phone_numbers", ["phone_number_type"], name: "index_has_vcards_phone_numbers_on_phone_number_type", using: :btree
+  add_index "has_vcards_phone_numbers", ["vcard_id"], name: "phone_numbers_vcard_id_index", using: :btree
 
   create_table "has_vcards_vcards", force: true do |t|
     t.string   "full_name",        limit: 50
@@ -56,7 +56,11 @@ ActiveRecord::Schema.define(version: 20140619121756) do
     t.datetime "updated_at"
   end
 
-  add_index "has_vcards_vcards", ["active"], name: "index_has_vcards_vcards_on_active"
-  add_index "has_vcards_vcards", ["reference_id", "reference_type"], name: "index_has_vcards_vcards_on_reference_id_and_reference_type"
+  add_index "has_vcards_vcards", ["active"], name: "index_has_vcards_vcards_on_active", using: :btree
+  add_index "has_vcards_vcards", ["reference_id", "reference_type"], name: "index_has_vcards_vcards_on_reference_id_and_reference_type", using: :btree
+
+  create_table "somethings", force: true do |t|
+    t.string "title"
+  end
 
 end
