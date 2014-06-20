@@ -5,6 +5,22 @@ This is a major release bringing lots of cleanups. And of course some big featur
 * A spec suite, continuously running on Travis CI
 * Support for PostgreSQL, MySQL and SQLite
 * Fully isolated, mountable engine
+* A test suite
+
+Major Changes:
+
+* We now use namespaced models and tables. This means you need to use
+  HasVcards::CLASSNAME and add has_vcards/ in front view partials. The table
+  names have changes accordingly. There is a migration available for that, so
+  you can simply run 'rake has_vcards:install:migrations' to get them.
+
+* We now use 'reference' instead of 'object as the polymorphic key. This means
+  you should adapt your "has_one :vcard, as: 'object'" instances to "has_one
+  :vcard, as: 'reference', class_name 'HasVcards::Vcard'". No action needed when
+  you're using the 'has_vcards' helper in your models.
+
+* The Address model has no polymorphic association anymore, use a Vcard as the
+  main model.
 
 0.20.3
 ======
