@@ -12,25 +12,44 @@ module HasVcards
   end
 
   class Vcard < ActiveRecord::Base
-    # Access restrictions
-    attr_accessible :full_name, :honorific_prefix, :family_name, :given_name if defined?(ActiveModel::MassAssignmentSecurity)
+    has_one :address, autosave: true, validate: true
+    # Phone numbers
+    has_many :contacts, class_name: 'PhoneNumber', inverse_of: :vcard do
+      def build_defaults
+        # TODO i18nify
+        ['Tel. geschäft', 'Tel. privat', 'Handy', 'E-Mail'].map{ |phone_number_type|
+          build(phone_number_type: phone_number_type) unless exists?(phone_number_type: phone_number_type)
+        }
+      end
+    end
+    has_many :addresses, autosave: true, validate: true
+    belongs_to :reference, polymorphic: true
 
-    has_one :address, :autosave => true, :validate => true
-    accepts_nested_attributes_for :address
-    attr_accessible :address_attributes if defined?(ActiveModel::MassAssignmentSecurity)
-    delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, :to => :address
-    delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :zip_locality=, :to => :address
-    attr_accessible :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality if defined?(ActiveModel::MassAssignmentSecurity)
-    include HasAddress
-
-    has_many :addresses, :autosave => true, :validate => true
     accepts_nested_attributes_for :addresses
+    accepts_nested_attributes_for :address
 
-    scope :active, :conditions => {:active => true}
-    scope :by_name, lambda {|name| {:conditions => self.by_name_conditions(name)}}
+    delegate  :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, to: :address
+    delegate  :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :zip_locality=, to: :address
+
+    accepts_nested_attributes_for :contacts,
+      reject_if: proc {|attributes| attributes['number'].blank? },
+      allow_destroy: true
+
+    # Access restrictions
+    if defined?(ActiveModel::MassAssignmentSecurity)
+      attr_accessible :full_name, :address_attributes, :family_name, :given_name,
+        :post_office_box, :extended_address, :street_address, :locality, :region,
+        :postal_code, :country_name, :zip_locality, :contacts_attributes,
+        :honorific_prefix
+    end
+
+    include HasAddress
+    # SwissMatch
+    include Vcard::DirectoryLookup
+
+    scope :active, conditions: { active: true }
+    scope :by_name, lambda { |name| { conditions: self.by_name_conditions(name) } }
     scope :with_address, joins(:address).includes(:address)
-
-    belongs_to :object, :polymorphic => true
 
     # Validations
     include I18nHelpers
@@ -59,15 +78,15 @@ module HasVcards
 
     # Advanced finders
     def self.by_name_conditions(name)
-      ['vcards.full_name LIKE :name OR vcards.family_name LIKE :name OR vcards.given_name LIKE :name OR vcards.nickname LIKE :name', {:name => name}]
+      ['vcards.full_name LIKE :name OR vcards.family_name LIKE :name OR vcards.given_name LIKE :name OR vcards.nickname LIKE :name', { name: name }]
     end
 
     def self.find_by_name(name)
-      self.find(:first, :conditions => self.by_name_conditions(name))
+      self.find :first, conditions: self.by_name_conditions(name)
     end
 
     def self.find_all_by_name(name)
-      self.find(:all, :conditions => self.by_name_conditions(name))
+      self.find :all, conditions: self.by_name_conditions(name)
     end
 
     # Helper methods
@@ -85,30 +104,11 @@ module HasVcards
       lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
     end
 
-    def contact_lines(separator = " ")
+    def contact_lines
       lines = contacts.map{|p| p.to_s unless (p.number.nil? or p.number.strip.empty?)}
 
       # Only return non-empty lines
       lines.map {|line| line.strip unless (line.nil? or line.strip.empty?)}.compact
     end
-
-    # Phone numbers
-    has_many :contacts, :class_name => 'PhoneNumber', :as => :object, :inverse_of => :vcard do
-      def build_defaults
-        ['Tel. geschäft', 'Tel. privat', 'Handy', 'E-Mail'].map{ |phone_number_type|
-          build(:phone_number_type => phone_number_type) unless exists?(:phone_number_type => phone_number_type)
-        }
-      end
-    end
-    accepts_nested_attributes_for :contacts, :reject_if => proc {|attributes| attributes['number'].blank? }, :allow_destroy => true
-    attr_accessible :contacts_attributes if defined?(ActiveModel::MassAssignmentSecurity)
-
-    # Salutation
-    def salutation
-      I18n.translate(honorific_prefix.presence || :default, :scope => 'salutation', :family_name => family_name, :default => :default)
-    end
-
-    # SwissMatch
-    include Vcard::DirectoryLookup
   end
 end

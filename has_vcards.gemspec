@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "inherited_resources"
   s.add_dependency "simple_form"
   s.add_dependency "i18n_rails_helpers"
+  s.add_dependency "haml"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "pg"

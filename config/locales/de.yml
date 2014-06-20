@@ -77,15 +77,3 @@ de:
       family_name: Anderer Vorname
       address:     An dieser Adresse
       locality:    In diesem Ort
-
-  # Honorific Prefixes
-  salutation:
-    'Herr Dr. med.': Sehr geehrter Herr Dr. %{family_name}
-    'Frau Dr. med.': Sehr geehrte Frau Dr. %{family_name}
-    'Herr Dr.': Sehr geehrter Herr Dr. %{family_name}
-    'Frau Dr.': Sehr geehrte Frau Dr. %{family_name}
-    'Herr': Sehr geehrter Herr %{family_name}
-    'Frau': Sehr geehrte Frau %{family_name}
-    'Br.': Sehr geehrter Bruder %{family_name}
-    'Sr.': Sehr geehrte Schwester %{family_name}
-    default: Sehr geehrte Damen und Herren
