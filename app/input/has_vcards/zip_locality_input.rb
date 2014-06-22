@@ -1,7 +1,7 @@
 module HasVcards
   class ZipLocalityInput < SimpleForm::Inputs::StringInput
     def zip_codes
-      SwissMatch.zip_codes.map{|zip| zip.to_s}.inspect
+      SwissMatch.zip_codes.map { |zip| zip.to_s }.inspect
     end
 
     def input

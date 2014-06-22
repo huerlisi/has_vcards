@@ -9,11 +9,13 @@ module HasVcards
     end
 
     private
+
     def extract_vcard_params(params, selector)
-      keys = selector.delete(']').split('[');
+      keys = selector.delete(']').split('[')
       vcard_params = params
-      keys.each {|key| vcard_params = vcard_params[key]}
-      return vcard_params
+      keys.each { |key| vcard_params = vcard_params[key] }
+
+      vcard_params
     end
   end
 end

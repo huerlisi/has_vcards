@@ -10,7 +10,7 @@ module HasVcards
 
     def directory_update
       @vcard = Vcard.find(params[:id])
-      new_params = params[:vcard].select{|key, value| ['family_name', 'given_name', 'street_address', 'postal_code', 'locality'].include?(key)}
+      new_params = params[:vcard].select { |key, _| ['family_name', 'given_name', 'street_address', 'postal_code', 'locality'].include?(key) }
 
       @vcard.update_attributes(new_params)
 

@@ -14,12 +14,11 @@ module HasVcards
     def directory_lookup(ignore_fields = [])
       search = map_for_directory
 
-      search.reject!{|key, value| ignore_fields.include? key}
+      search.reject! { |key, _value| ignore_fields.include? key }
 
-      # TODO:
-      # We should fetch additional pages if the result indicates there
+      # TODO: We should fetch additional pages if the result indicates there
       # are more pages.
-      ::SwissMatch.directory_service.addresses(search, :per_page => 10)
+      ::SwissMatch.directory_service.addresses(search, per_page: 10)
     end
 
     def directory_found?(ignore_fields = [])
@@ -52,7 +51,7 @@ module HasVcards
 
         bad = search.keys - perfect - partial - ignore_lookup_fields
 
-        {:address => match, :perfect => perfect, :partial => partial, :bad => bad, :ignore => ignore_lookup_fields}
+        { address: match, perfect: perfect, partial: partial, bad: bad, ignore: ignore_lookup_fields }
       end
     end
 
@@ -73,20 +72,20 @@ module HasVcards
         return false unless match[:perfect].include?(field) || match[:partial].include?(field)
       end if filter[:partial_or_perfect]
 
-      return true
+      true
     end
 
     def filtered_matches(filters)
       ignores = filters.delete(:ignore) || []
 
-      directory_matches(ignores).collect do |match|
+      directory_matches(ignores).map do |match|
         match[:address] if directory_filter(match, filters)
       end.compact
     end
 
     # Everything matches
     def perfect_matches
-      filtered_matches(:perfect => [:family_name, :first_name, :street, :city])
+      filtered_matches(perfect: [:family_name, :first_name, :street, :city])
     end
 
     def perfect_match?
@@ -95,7 +94,7 @@ module HasVcards
 
     # Everything is found, given or family name does is partial match
     def great_matches
-      filtered_matches(:partial_or_perfect => [:family_name, :first_name], :perfect => [:street, :city])
+      filtered_matches(partial_or_perfect: [:family_name, :first_name], perfect: [:street, :city])
     end
 
     def great_match?
@@ -104,7 +103,7 @@ module HasVcards
 
     # Everything but given name matches, family name might be partial
     def family_name_matches
-      filtered_matches(:ignore => [:first_name], :partial_or_perfect => [:family_name], :perfect => [:street, :city])
+      filtered_matches(ignore: [:first_name], partial_or_perfect: [:family_name], perfect: [:street, :city])
     end
 
     def family_name_match?
@@ -113,12 +112,12 @@ module HasVcards
 
     # Same address different names
     def address_matches
-      filtered_matches(:ignore => [:first_name, :family_name], :perfect => [:street, :city])
+      filtered_matches(ignore: [:first_name, :family_name], perfect: [:street, :city])
     end
 
     # Similar name in same locality
     def locality_matches
-      filtered_matches(:ignore => [:first_name, :street], :partial_or_perfect => [:family_name], :perfect => [:city])
+      filtered_matches(ignore: [:first_name, :street], partial_or_perfect: [:family_name], perfect: [:city])
     end
   end
 end

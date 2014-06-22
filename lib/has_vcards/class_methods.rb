@@ -1,6 +1,6 @@
 module HasVcards
   module ClassMethods
-    def has_vcards(options = {})
+    def has_vcards
       class_eval <<-end_eval
         scope :by_name, lambda {|name| {:include => :vcard, :order => 'vcards.full_name', :conditions => Vcard.by_name_conditions(name)}}
 

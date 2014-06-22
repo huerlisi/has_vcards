@@ -1,4 +1,4 @@
-require "has_vcards/engine"
+require 'has_vcards/engine'
 
 module HasVcards
   extend ActiveSupport::Autoload
