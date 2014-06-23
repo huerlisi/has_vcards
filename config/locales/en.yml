@@ -45,6 +45,11 @@ en:
       has_vcards/phone_number:
         number:           Number
         phone_number_type: Number Type
+        phone_number_type_enum:
+          phone:  Phone
+          fax:    Fax
+          mobile: Mobile
+          email:  Mail
 
   formtastic:
     labels:

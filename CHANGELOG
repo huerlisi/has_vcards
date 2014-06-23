@@ -6,6 +6,7 @@ This is a major release bringing lots of cleanups. And of course some big featur
 * Support for PostgreSQL, MySQL and SQLite
 * Fully isolated, mountable engine
 * A test suite
+* Use locales for phone number types
 
 Major Changes:
 
@@ -21,6 +22,9 @@ Major Changes:
 
 * The Address model has no polymorphic association anymore, use a Vcard as the
   main model.
+
+* PhoneNumber#to_s now expects the format as first argument and an optional
+  separator as the second one.
 
 0.20.3
 ======

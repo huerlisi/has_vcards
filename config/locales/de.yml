@@ -56,6 +56,11 @@ de:
       has_vcards/phone_number:
         number:           Nummer
         phone_number_type: Nummer-Typ
+        phone_number_type_enum:
+          phone:  Tel
+          fax:    Fax
+          mobile: Mob
+          email:  Mail
 
   formtastic:
     labels:

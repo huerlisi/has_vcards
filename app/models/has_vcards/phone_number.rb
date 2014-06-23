@@ -1,3 +1,16 @@
+# Phone Number / Contact model
+#
+# This model holds a contact for a Vcard. It is called PhoneNumber in
+# compliance with the vCard spec, but can hold any kind of contact like mobile
+# phone, email, or homepage.
+#
+# There can be multiple phone numbers be assigned to a vcard, where they are
+# available as the #contacts association.
+#
+# The #label method uses the I18n locales to translate the phone_number_type.
+# You may add additional ones in under the
+# 'activerecord.attributes.has_vcards/phone_number.phone_number_type_enum'
+# scope.
 module HasVcards
   class PhoneNumber < ActiveRecord::Base
     # Access restrictions
@@ -17,22 +30,11 @@ module HasVcards
     scope :email, by_type('email')
 
     def label
-      case phone_number_type
-      when 'phone'
-        'Tel:'
-      when 'fax'
-        'Fax:'
-      when 'mobile'
-        'Mob:'
-      when 'email'
-        'Mail:'
-      else
-        phone_number_type
-      end
+      I18n::translate(phone_number_type, scope: 'activerecord.attributes.has_vcards/phone_number.phone_number_type_enum', default: phone_number_type.titleize)
     end
 
     # String
-    def to_s(separator = ' ', format = :default)
+    def to_s(format = :default, separator = ': ')
       case format
       when :label
         return [label, number].compact.join(separator)
