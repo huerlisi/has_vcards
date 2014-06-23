@@ -30,7 +30,7 @@ module HasVcards
     scope :email, by_type('email')
 
     def label
-      I18n::translate(phone_number_type, scope: 'activerecord.attributes.has_vcards/phone_number.phone_number_type_enum', default: phone_number_type.titleize)
+      I18n.translate(phone_number_type, scope: 'activerecord.attributes.has_vcards/phone_number.phone_number_type_enum', default: phone_number_type.titleize)
     end
 
     # String

@@ -36,8 +36,8 @@ RSpec.describe HasVcards::PhoneNumber do
     it 'returns the label and number for the :label format' do
       expect(phone).to receive(:label).and_return('Ph')
       string = phone.to_s(:label)
-      expect(string).to match %r(077/777 88 99)
-      expect(string).to match %r(Ph)
+      expect(string).to match(/077\/777 88 99/)
+      expect(string).to match(/Ph/)
     end
 
     it 'uses the passed in separator for the :label format' do
