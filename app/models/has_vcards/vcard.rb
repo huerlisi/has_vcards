@@ -1,19 +1,32 @@
-# encoding: utf-8
-
+# Vcard class
+#
+# This is the main model containing vcards information. It can be assigned to
+# any kind of model by assigning the 'reference'.
+#
+# To include in a model, you may use the 'has_vcards' helper:
+#
+# class Something has_vcards end
 module HasVcards
-  module HasAddress
-    def self.included(base)
-      base.alias_method_chain :address, :autobuild
-    end
+  class Vcard < ActiveRecord::Base
+    # Reference
+    belongs_to :reference, polymorphic: true
+
+    # Addresses
+    has_one :address, autosave: true, validate: true
+    has_many :addresses, autosave: true, validate: true
+
+    accepts_nested_attributes_for :addresses
+    accepts_nested_attributes_for :address
+
+    delegate :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, to: :address
+    delegate :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :zip_locality=, to: :address
 
     def address_with_autobuild
       address_without_autobuild || build_address
     end
-  end
+    alias_method_chain :address, :autobuild
 
-  class Vcard < ActiveRecord::Base
-    has_one :address, autosave: true, validate: true
-    # Phone numbers
+    # Contacts
     has_many :contacts, class_name: 'PhoneNumber', inverse_of: :vcard do
       def build_defaults
         # TODO: i18nify
@@ -22,14 +35,6 @@ module HasVcards
         end
       end
     end
-    has_many :addresses, autosave: true, validate: true
-    belongs_to :reference, polymorphic: true
-
-    accepts_nested_attributes_for :addresses
-    accepts_nested_attributes_for :address
-
-    delegate :post_office_box, :extended_address, :street_address, :locality, :region, :postal_code, :country_name, :zip_locality, to: :address
-    delegate :post_office_box=, :extended_address=, :street_address=, :locality=, :region=, :postal_code=, :country_name=, :zip_locality=, to: :address
 
     accepts_nested_attributes_for :contacts,
                                   reject_if: proc { |attributes| attributes['number'].blank? },
@@ -43,7 +48,6 @@ module HasVcards
                       :honorific_prefix
     end
 
-    include HasAddress
     # SwissMatch
     include Vcard::DirectoryLookup
 
