@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# Dummy class to test class methods
 class Something < ActiveRecord::Base
   has_vcards
 end

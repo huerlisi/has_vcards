@@ -1,4 +1,7 @@
 module HasVcards
+  # View helpers
+  #
+  # These helpers are available by default.
   module ApplicationHelper
     def address(vcard, line_separator = '<br/>')
       vcard.address_lines.map { |line| h(line) }.join(line_separator).html_safe

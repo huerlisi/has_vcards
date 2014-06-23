@@ -5,6 +5,12 @@ require 'simple_form'
 require 'i18n_rails_helpers'
 
 module HasVcards
+  # The Engine
+  #
+  # Integrates the has_vcards gem with Rails. It adds the view and class helpers.
+  #
+  # We use an isolated_namespace, that means all the classes, views, helpers etc
+  # are only available in the HasVcards:: namespace.
   class Engine < Rails::Engine
     isolate_namespace HasVcards
 

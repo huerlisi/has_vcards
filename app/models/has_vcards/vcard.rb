@@ -5,7 +5,9 @@
 #
 # To include in a model, you may use the 'has_vcards' helper:
 #
-# class Something has_vcards end
+# class Something < ActiveRecord::Base
+#   has_vcards
+# end
 module HasVcards
   class Vcard < ActiveRecord::Base
     # Reference
