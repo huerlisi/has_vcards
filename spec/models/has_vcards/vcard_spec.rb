@@ -39,7 +39,7 @@ describe HasVcards::Vcard do
     end
   end
 
-  describe 'full name generation' do
+  describe '#full_name' do
 
     describe 'with an existing full name' do
 
@@ -60,7 +60,7 @@ describe HasVcards::Vcard do
     end
   end
 
-  describe 'abbreviated name generation' do
+  describe '#abbreviated_name' do
 
     describe 'with an existing full name' do
 
