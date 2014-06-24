@@ -4,6 +4,7 @@
 rdoc
 pkg
 *.gem
+.bundle
 
 # Dummy App
 spec/dummy/db/*.sqlite3

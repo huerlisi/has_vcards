@@ -42,5 +42,19 @@ module HasVcards
         return number
       end
     end
+
+    # Generate a contact URL
+    def to_url
+      scheme = case phone_number_type
+        when 'phone'  then 'tel'
+        when 'mobile' then 'tel'
+        when 'fax'    then 'fax'
+        when 'email'  then 'mailto'
+      end
+
+      if scheme
+        "#{scheme}:#{number}"
+      end
+    end
   end
 end
