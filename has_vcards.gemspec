@@ -7,7 +7,7 @@ require "has_vcards/version"
 Gem::Specification.new do |s|
   s.name        = "has_vcards"
   s.version     = HasVcards::VERSION
-  s.authors     = ["Simon Hürlimann (CyT)"]
+  s.authors     = ["Simon Huerlimann (CyT)"]
   s.email       = ["simon.huerlimann@cyt.ch"]
   s.homepage    = "https://github.com/huerlisi/has_vcards"
   s.summary     = "vCard plugin for Rails"
