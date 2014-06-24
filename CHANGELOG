@@ -7,6 +7,7 @@ This is a major release bringing lots of cleanups. And of course some big featur
 * Fully isolated, mountable engine
 * A test suite
 * Use locales for phone number types
+* Using Concerns to integrate with ActiveRecord.
 
 Major Changes:
 
@@ -17,14 +18,16 @@ Major Changes:
 
 * We now use 'reference' instead of 'object as the polymorphic key. This means
   you should adapt your "has_one :vcard, as: 'object'" instances to "has_one
-  :vcard, as: 'reference', class_name 'HasVcards::Vcard'". No action needed when
-  you're using the 'has_vcards' helper in your models.
+  :vcard, as: 'reference', class_name 'HasVcards::Vcard'".
 
 * The Address model has no polymorphic association anymore, use a Vcard as the
   main model.
 
 * PhoneNumber#to_s now expects the format as first argument and an optional
   separator as the second one.
+
+* The 'has_vcards' class method on ActiveRecord classes is no more. Use
+* HasVcards::Concerns::HasVcards to set up associations and helpers
 
 0.20.3
 ======

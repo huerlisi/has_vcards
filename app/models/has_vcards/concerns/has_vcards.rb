@@ -1,7 +1,18 @@
 module HasVcards
-  module ClassMethods
-    def has_vcards
-      class_eval <<-end_eval
+  module Concerns
+    # ActiveRecord extensions
+    #
+    # Including this module in your ActiveRecord classes sets up associations and helpers to integrate Vcards with that model.
+    #
+    # Use something like this to use it:
+    #
+    # class Something < ActiveRecord::Base
+    #   include HasVcards::Concerns::HasVcards
+    # end
+    module HasVcards
+      extend ActiveSupport::Concern
+
+      included do
         scope :by_name, lambda {|name| {:include => :vcard, :order => 'vcards.full_name', :conditions => Vcard.by_name_conditions(name)}}
 
         has_one :vcard, :class_name => 'HasVcards::Vcard', :as => 'reference', :autosave => true, :validate => true
@@ -14,7 +25,7 @@ module HasVcards
           vcard_without_autobuild || build_vcard
         end
         alias_method_chain :vcard, :autobuild
-      end_eval
+      end
     end
   end
 end

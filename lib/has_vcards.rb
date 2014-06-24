@@ -4,7 +4,4 @@ require 'has_vcards/engine'
 #
 # This defines the namespace and adds autoload definitions.
 module HasVcards
-  extend ActiveSupport::Autoload
-
-  autoload :ClassMethods
 end

@@ -2,10 +2,10 @@ require 'rails_helper'
 
 # Dummy class to test class methods
 class Something < ActiveRecord::Base
-  has_vcards
+  include HasVcards::Concerns::HasVcards
 end
 
-describe HasVcards::ClassMethods do
+describe HasVcards::Concerns::HasVcards do
   context 'a new instance of Something' do
     let(:something) { Something.new }
 
