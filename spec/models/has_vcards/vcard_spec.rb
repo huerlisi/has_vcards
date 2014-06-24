@@ -81,7 +81,7 @@ describe HasVcards::Vcard do
     end
   end
 
-  describe 'address lines helper' do
+  describe '#address_lines' do
 
     it 'only returns non empty lines' do
       @vcard.street_address   = '1234 Foobar Street'
@@ -91,7 +91,7 @@ describe HasVcards::Vcard do
     end
   end
 
-  describe 'full address lines helper' do
+  describe '#full_address_lines' do
 
     it 'only returns the full address and name' do
       @vcard.street_address   = '1234 Foobar Street'
@@ -101,7 +101,7 @@ describe HasVcards::Vcard do
     end
   end
 
-  describe 'contact lines helper' do
+  describe '#contact_lines' do
     before do
       3.times { FactoryGirl.create :phone_number, vcard: @vcard }
     end
