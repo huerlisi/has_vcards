@@ -44,10 +44,10 @@ module HasVcards
 
     # Access restrictions
     if defined?(ActiveModel::MassAssignmentSecurity)
-      attr_accessible :full_name, :address_attributes, :family_name, :given_name,
+      attr_accessible :full_name, :nickname, :address_attributes, :family_name, :given_name,
                       :post_office_box, :extended_address, :street_address, :locality, :region,
                       :postal_code, :country_name, :zip_locality, :contacts_attributes,
-                      :honorific_prefix
+                      :honorific_prefix, :honorific_suffix
     end
 
     # SwissMatch
