@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe HasVcards::Vcard do
-  before { @vcard = FactoryGirl.create :vcard }
+  before { @vcard = FactoryGirl.build :vcard }
 
   it 'has a valid factory' do
     expect(@vcard).to be_valid
