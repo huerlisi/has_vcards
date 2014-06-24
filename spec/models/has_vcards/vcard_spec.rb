@@ -90,6 +90,11 @@ describe HasVcards::Vcard do
 
       expect(@vcard.address_lines.size).to be 2
     end
+
+    it 'strips lines' do
+      @vcard.street_address = '  1234 Foobar Street   '
+      expect(@vcard.address_lines).to include('1234 Foobar Street')
+    end
   end
 
   describe '#full_address_lines' do
@@ -102,16 +107,23 @@ describe HasVcards::Vcard do
 
       expect(@vcard.full_address_lines.size).to be 4
     end
+
+    it 'strips lines' do
+      @vcard.street_address = '  1234 Foobar Street   '
+      expect(@vcard.address_lines).to include('1234 Foobar Street')
+    end
   end
 
   describe '#contact_lines' do
-    before do
-      3.times { FactoryGirl.create :phone_number, vcard: @vcard }
-    end
-
     it 'returns contact lines' do
+      3.times { FactoryGirl.create :phone_number, vcard: @vcard }
       expect(@vcard.contacts.size).to eq 3
       expect(@vcard.contact_lines.size).to eq 3
+    end
+
+    it 'strips lines' do
+      @vcard.contacts.build(number: '  123 44 55  ')
+      expect(@vcard.contact_lines).to include('123 44 55')
     end
   end
 end
