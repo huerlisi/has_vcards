@@ -7,6 +7,14 @@ describe HasVcards::Vcard do
     expect(@vcard).to be_valid
   end
 
+  context 'a new instance' do
+    let(:vcard) { HasVcards::Vcard.new }
+
+    it 'has an address autobuilt' do
+      expect(vcard.address).to be_a HasVcards::Address
+    end
+  end
+
   describe 'name validation' do
 
     it 'accepts vcards with a full name' do
