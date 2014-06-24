@@ -26,7 +26,6 @@ module HasVcards
         delegate :full_name, :nickname, :family_name, :given_name, :additional_name, :honorific_prefix, :honorific_suffix, to: :vcard
         delegate :full_name=, :nickname=, :family_name=, :given_name=, :additional_name=, :honorific_prefix=, :honorific_suffix=, to: :vcard
 
-
         def vcard_with_autobuild
           vcard_without_autobuild || build_vcard
         end
