@@ -63,4 +63,18 @@ describe HasVcards::Concerns::HasVcards do
     expect(something.honorific_prefix).to eq 'Prefix'
     expect(something.honorific_suffix).to eq 'Suffix'
   end
+
+  it 'should accept nested attributes for vcard' do
+    vcard_attributes = { full_name: 'Full' }
+
+    something = Something.create(vcard_attributes: vcard_attributes)
+    expect(something.vcard.full_name).to eq 'Full'
+  end
+
+  it 'should accept nested attributes for vcards' do
+    vcards_attributes = { '' => { full_name: 'Full' } }
+
+    something = Something.create(vcards_attributes: vcards_attributes)
+    expect(something.vcards[0].full_name).to eq 'Full'
+  end
 end
