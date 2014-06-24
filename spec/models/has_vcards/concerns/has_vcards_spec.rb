@@ -20,48 +20,18 @@ describe HasVcards::Concerns::HasVcards do
     it 'has a vcard autobuilt' do
       expect(something.vcard).to be_a HasVcards::Vcard
     end
-  end
 
-  it 'delegates name attributes writes to the vcard' do
-    something = Something.new(
-      full_name: 'Full',
-      nickname: 'Nick',
-      family_name: 'Family',
-      given_name: 'Given',
-      additional_name: 'Additional',
-      honorific_prefix: 'Prefix',
-      honorific_suffix: 'Suffix'
-    )
+    it 'delegates attribute accessors to the main vcard' do
+      attributes = %i[ full_name nickname family_name given_name additional_name honorific_prefix honorific_suffix ]
 
-    expect(something.vcard.full_name).to eq 'Full'
-    expect(something.vcard.nickname).to eq 'Nick'
-    expect(something.vcard.family_name).to eq 'Family'
-    expect(something.vcard.given_name).to eq 'Given'
-    expect(something.vcard.additional_name).to eq 'Additional'
-    expect(something.vcard.honorific_prefix).to eq 'Prefix'
-    expect(something.vcard.honorific_suffix).to eq 'Suffix'
-  end
+      attributes.each do |attr|
+        expect(something.vcard).to receive(attr)
+        something.vcard.send(attr)
 
-  it 'delegates name attributes reads to the vcard' do
-    vcard = HasVcards::Vcard.new(
-      full_name: 'Full',
-      nickname: 'Nick',
-      family_name: 'Family',
-      given_name: 'Given',
-      additional_name: 'Additional',
-      honorific_prefix: 'Prefix',
-      honorific_suffix: 'Suffix'
-    )
-
-    something = Something.new(vcard: vcard)
-
-    expect(something.full_name).to eq 'Full'
-    expect(something.nickname).to eq 'Nick'
-    expect(something.family_name).to eq 'Family'
-    expect(something.given_name).to eq 'Given'
-    expect(something.additional_name).to eq 'Additional'
-    expect(something.honorific_prefix).to eq 'Prefix'
-    expect(something.honorific_suffix).to eq 'Suffix'
+        expect(something.vcard).to receive("#{attr}=")
+        something.vcard.send("#{attr}=", 'foo')
+      end
+    end
   end
 
   it 'should accept nested attributes for vcard' do

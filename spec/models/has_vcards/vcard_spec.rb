@@ -89,6 +89,17 @@ describe HasVcards::Vcard do
     end
   end
 
+  it 'delegates attribute accessors to the main address' do
+    attributes = %i[post_office_box extended_address street_address locality region postal_code country_name zip_locality]
+    attributes.each do |attr|
+      expect(@vcard.address).to receive(attr)
+      @vcard.address.send(attr)
+
+      expect(@vcard.address).to receive("#{attr}=")
+      @vcard.address.send("#{attr}=", 'foo')
+    end
+  end
+
   describe '#address_lines' do
 
     it 'only returns non empty lines' do
