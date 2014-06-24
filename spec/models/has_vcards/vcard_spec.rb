@@ -86,6 +86,7 @@ describe HasVcards::Vcard do
     it 'only returns non empty lines' do
       @vcard.street_address   = '1234 Foobar Street'
       @vcard.post_office_box  = '09823'
+      @vcard.extended_address = '   '
 
       expect(@vcard.address_lines.size).to be 2
     end
@@ -93,11 +94,13 @@ describe HasVcards::Vcard do
 
   describe '#full_address_lines' do
 
-    it 'only returns the full address and name' do
+    it 'also returns the full address and name' do
+      @vcard.full_name        = 'Fullname'
+      @vcard.honorific_prefix = 'Prefix'
       @vcard.street_address   = '1234 Foobar Street'
       @vcard.post_office_box  = '09823'
 
-      expect(@vcard.full_address_lines.size).to be 3
+      expect(@vcard.full_address_lines.size).to be 4
     end
   end
 
@@ -106,7 +109,7 @@ describe HasVcards::Vcard do
       3.times { FactoryGirl.create :phone_number, vcard: @vcard }
     end
 
-    it 'only returns the full address and name' do
+    it 'returns contact lines' do
       expect(@vcard.contacts.size).to eq 3
       expect(@vcard.contact_lines.size).to eq 3
     end
