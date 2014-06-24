@@ -31,6 +31,12 @@ module HasVcards
           vcard_without_autobuild || build_vcard
         end
         alias_method_chain :vcard, :autobuild
+
+        # Access restrictions
+        if defined?(ActiveModel::MassAssignmentSecurity)
+          attr_accessible :full_name, :nickname, :family_name, :given_name, :honorific_prefix, :honorific_suffix,
+                          :vcard_attributes, :vcards_attributes
+        end
       end
     end
   end
