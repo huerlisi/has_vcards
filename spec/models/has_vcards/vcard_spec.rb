@@ -145,4 +145,26 @@ describe HasVcards::Vcard do
       expect(@vcard.contact_lines).to include('123 44 55')
     end
   end
+
+  describe 'contacts relation' do
+    describe '#build_defaults' do
+      it 'builds default contacts' do
+        @vcard.contacts = []
+        @vcard.contacts.build_defaults
+        expect(@vcard.contacts.map(&:phone_number_type)).to eql ['Tel. geschäft', 'Tel. privat', 'Handy', 'E-Mail']
+      end
+
+      it 'can be run twice without duplicating default contacts' do
+        @vcard.contacts = []
+        @vcard.contacts.build_defaults
+        expect { @vcard.contacts.build_defaults }.to_not change { @vcard.contacts.size }
+      end
+
+      it 'does not add contacts for existing type' do
+        email = @vcard.contacts.build phone_number_type: 'E-Mail'
+        @vcard.contacts.build_defaults
+        expect(@vcard.contacts.select { |contact| contact.phone_number_type == 'E-Mail' }).to contain_exactly(email)
+      end
+    end
+  end
 end

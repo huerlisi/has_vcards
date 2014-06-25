@@ -32,8 +32,9 @@ module HasVcards
     has_many :contacts, class_name: 'PhoneNumber', inverse_of: :vcard do
       def build_defaults
         # TODO: i18nify
-        ['Tel. geschäft', 'Tel. privat', 'Handy', 'E-Mail'].map do |phone_number_type|
-          build(phone_number_type: phone_number_type) unless exists?(phone_number_type: phone_number_type)
+        ['Tel. geschäft', 'Tel. privat', 'Handy', 'E-Mail'].each do |phone_number_type|
+          next if select { |contact| contact.phone_number_type == phone_number_type }.present?
+          build(phone_number_type: phone_number_type)
         end
       end
     end
