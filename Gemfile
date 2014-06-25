@@ -10,8 +10,6 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-group :tools do
-  # Debugger
-  gem 'pry-rails'
-  gem 'pry-byebug'
-end
+# Debugger
+gem 'pry-rails'
+gem 'pry-byebug'
