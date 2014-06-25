@@ -34,14 +34,14 @@ describe HasVcards::Concerns::HasVcards do
     end
   end
 
-  it 'should accept nested attributes for vcard' do
+  it 'accepts nested attributes for vcard' do
     vcard_attributes = { full_name: 'Full' }
 
     something = Something.create(vcard_attributes: vcard_attributes)
     expect(something.vcard.full_name).to eq 'Full'
   end
 
-  it 'should accept nested attributes for vcards' do
+  it 'accepts nested attributes for vcards' do
     vcards_attributes = { '' => { full_name: 'Full' } }
 
     something = Something.create(vcards_attributes: vcards_attributes)

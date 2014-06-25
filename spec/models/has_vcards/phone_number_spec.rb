@@ -56,22 +56,22 @@ RSpec.describe HasVcards::PhoneNumber do
 
     it 'returns a tel: URL for phone numbers' do
       phone.phone_number_type = 'phone'
-      expect(phone.to_url).to eq "tel:123"
+      expect(phone.to_url).to eq 'tel:123'
     end
 
     it 'returns a tel: URL for mobile numbers' do
       phone.phone_number_type = 'mobile'
-      expect(phone.to_url).to eq "tel:123"
+      expect(phone.to_url).to eq 'tel:123'
     end
 
     it 'returns a fax: URL for fax numbers' do
       phone.phone_number_type = 'fax'
-      expect(phone.to_url).to eq "fax:123"
+      expect(phone.to_url).to eq 'fax:123'
     end
 
     it 'returns a mailto: URL for email addresses' do
       phone.phone_number_type = 'email'
-      expect(phone.to_url).to eq "mailto:123"
+      expect(phone.to_url).to eq 'mailto:123'
     end
 
     it 'returns nil for unknown types' do

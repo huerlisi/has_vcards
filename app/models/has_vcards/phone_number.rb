@@ -45,16 +45,17 @@ module HasVcards
 
     # Generate a contact URL
     def to_url
-      scheme = case phone_number_type
+      scheme =
+        case phone_number_type
         when 'phone'  then 'tel'
         when 'mobile' then 'tel'
         when 'fax'    then 'fax'
         when 'email'  then 'mailto'
-      end
+        end
 
-      if scheme
-        "#{scheme}:#{number}"
-      end
+      return unless scheme
+
+      "#{scheme}:#{number}"
     end
   end
 end
