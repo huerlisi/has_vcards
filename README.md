@@ -5,6 +5,13 @@ has_vcards
 
 Rails plugin providing VCard like contact and address models and helpers.
 
+Install
+=======
+
+In Rails simply add
+
+    gem 'has_vcards'
+
 License
 =======
 
