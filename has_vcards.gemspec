@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "vCard like contact and address models and helpers for Rails."
   s.license     = "MIT"
 
-  s.files       = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files       = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files  = Dir["spec/**/*"]
 
   s.add_dependency "rails", "> 3.2.0"
