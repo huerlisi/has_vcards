@@ -49,14 +49,14 @@ describe HasVcards::Vcard do
 
   describe '#full_name' do
 
-    describe 'with an existing full name' do
+    context 'with an existing full name' do
 
       it 'returns the same name' do
         expect(@vcard.full_name).to eq 'Ben Hur'
       end
     end
 
-    describe 'without an existing full name' do
+    context 'without an existing full name' do
       before { @vcard.full_name = nil }
 
       it 'constructs a full name from family- and given name' do
@@ -70,14 +70,14 @@ describe HasVcards::Vcard do
 
   describe '#abbreviated_name' do
 
-    describe 'with an existing full name' do
+    context 'with an existing full name' do
 
       it 'returns the same name' do
         expect(@vcard.abbreviated_name).to eq 'Ben Hur'
       end
     end
 
-    describe 'without an existing full name' do
+    context 'without an existing full name' do
       before { @vcard.full_name = nil }
 
       it 'constructs a full name from family- and given name' do
