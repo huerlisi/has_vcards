@@ -1,5 +1,5 @@
 module HasVcards
-  module Vcard
+  class Vcard
     module DirectoryAddress
       def to_vcard
         Vcard.new(
