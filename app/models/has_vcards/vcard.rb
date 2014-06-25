@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # Vcard class
 #
 # This is the main model containing vcards information. It can be assigned to
