@@ -13,5 +13,6 @@ gemspec
 group :tools do
   # Debugger
   gem 'pry-rails'
-  gem 'pry-byebug'
+  gem 'pry-byebug', :platform => [:mri_20, :mri_21]
+  gem 'pry-debugger', :platform => [:mri_19]
 end
