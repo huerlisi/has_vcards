@@ -36,6 +36,10 @@ StringLiterals:
 WordArray:
   Enabled: false
 
+# Don't enforce encoding hints
+Style/Encoding:
+  Enabled: false
+
 # Specify desired delimiters for percent literals
 PercentLiteralDelimiters:
   PreferredDelimiters:
