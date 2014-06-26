@@ -22,7 +22,7 @@ describe HasVcards::Concerns::HasVcards do
     end
 
     it 'delegates attribute accessors to the main vcard' do
-      attributes = %i[ full_name nickname family_name given_name additional_name honorific_prefix honorific_suffix ]
+      attributes = [ :full_name, :nickname, :family_name, :given_name, :additional_name, :honorific_prefix, :honorific_suffix ]
 
       attributes.each do |attr|
         expect(something.vcard).to receive(attr)
