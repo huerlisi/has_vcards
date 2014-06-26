@@ -15,4 +15,8 @@ group :tools do
   gem 'pry-rails'
   gem 'pry-byebug', :platform => [:mri_20, :mri_21]
   gem 'pry-debugger', :platform => [:mri_19]
+
+  # QA
+  gem 'rubocop'
+  gem 'rubocop-rspec'
 end

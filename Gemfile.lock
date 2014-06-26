@@ -38,6 +38,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    ast (2.0.0)
     builder (3.2.2)
     byebug (2.7.0)
       columnize (~> 0.3)
@@ -86,8 +87,12 @@ GEM
     mysql2 (0.3.16)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
+    parser (2.2.0.pre.2)
+      ast (>= 1.1, < 3.0)
+      slop (~> 3.4, >= 3.4.5)
     pg (0.17.1)
     polyglot (0.3.5)
+    powerpack (0.0.9)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -118,6 +123,7 @@ GEM
       activesupport (= 4.1.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    rainbow (2.0.0)
     rake (10.3.2)
     responders (1.1.0)
       railties (>= 3.2, < 5)
@@ -137,6 +143,15 @@ GEM
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.0)
+    rubocop (0.24.0)
+      json (>= 1.7.7, < 2)
+      parser (>= 2.2.0.pre.2, < 3.0)
+      powerpack (~> 0.0.6)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.4)
+    rubocop-rspec (1.1.0)
+      rubocop (~> 0.23)
+    ruby-progressbar (1.5.1)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -175,4 +190,6 @@ DEPENDENCIES
   pry-debugger
   pry-rails
   rspec-rails
+  rubocop
+  rubocop-rspec
   sqlite3
