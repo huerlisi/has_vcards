@@ -12,6 +12,16 @@ AllCops:
 # Main style rules
 # ================
 
+# TODO: drop them
+Style/Documentation:
+  Enabled: false
+Style/MethodLength:
+  Enabled: false
+Style/CyclomaticComplexity:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 # Relax maximum line length
 LineLength:
   Max: 180

@@ -6,6 +6,7 @@ This is a major release bringing lots of cleanups. And of course some big featur
 * Support for PostgreSQL, MySQL and SQLite
 * Fully isolated, mountable engine
 * A test suite
+* Enforce code styling with rubocop
 * Use locales for phone number types
 * Using Concerns to integrate with ActiveRecord.
 
