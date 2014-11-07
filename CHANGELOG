@@ -9,6 +9,7 @@ This is a major release bringing lots of cleanups. And of course some big featur
 * Enforce code styling with rubocop
 * Use locales for phone number types
 * Using Concerns to integrate with ActiveRecord.
+* Drop size restrictions on database columns.
 
 Major Changes:
 

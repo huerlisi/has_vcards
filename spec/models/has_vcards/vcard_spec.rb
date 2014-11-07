@@ -9,6 +9,17 @@ describe HasVcards::Vcard do
     expect(@vcard).to be_valid
   end
 
+  context 'database schema' do
+    let(:vcard) { HasVcards::Vcard.new }
+
+    it 'allows long names' do
+      vcard.full_name = 'a' * 100
+      vcard.save
+      vcard.reload
+      expect(vcard.full_name).to eq ('a' * 100)
+    end
+  end
+
   context 'a new instance' do
     let(:vcard) { HasVcards::Vcard.new }
 
