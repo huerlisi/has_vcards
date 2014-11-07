@@ -2,5 +2,5 @@
 #
 # Used for Gem generation.
 module HasVcards
-  VERSION = '1.0.0.rc0'
+  VERSION = '1.0.0'
 end
