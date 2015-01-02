@@ -5,7 +5,6 @@ This is a major release bringing lots of cleanups. And of course some big featur
 * A spec suite, continuously running on Travis CI
 * Support for PostgreSQL, MySQL and SQLite
 * Fully isolated, mountable engine
-* A test suite
 * Enforce code styling with rubocop
 * Use locales for phone number types
 * Using Concerns to integrate with ActiveRecord.
@@ -14,7 +13,7 @@ This is a major release bringing lots of cleanups. And of course some big featur
 Major Changes:
 
 * We now use namespaced models and tables. This means you need to use
-  HasVcards::CLASSNAME and add has_vcards/ in front view partials. The table
+  HasVcards::CLASSNAME and prefix view partials with has_vcards/ . The table
   names have changes accordingly. There is a migration available for that, so
   you can simply run 'rake has_vcards:install:migrations' to get them.
 
@@ -29,7 +28,7 @@ Major Changes:
   separator as the second one.
 
 * The 'has_vcards' class method on ActiveRecord classes is no more. Use
-* HasVcards::Concerns::HasVcards to set up associations and helpers
+  HasVcards::Concerns::HasVcards to set up associations and helpers
 
 0.20.3
 ======
