@@ -1,3 +1,7 @@
+1.1.0 (unreleased)
+=====
+Make Rails 4.2 ready.
+
 1.0.0
 =====
 This is a major release bringing lots of cleanups. And of course some big features:
