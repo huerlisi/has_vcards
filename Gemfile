@@ -10,11 +10,14 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
+gem 'rails', '~> 4.1.8'
+
 group :tools do
   # Debugger
   gem 'pry-rails'
-  gem 'pry-byebug', :platform => [:mri_20, :mri_21]
-  gem 'pry-debugger', :platform => [:mri_19]
+  # Disabled debuggers as there seems no proper way to get this working.
+  # gem 'pry-byebug', :platform => [:mri_20, :mri_21, :mri_22]
+  # gem 'pry-debugger', :platform => [:mri_19]
 
   # QA
   gem 'rubocop'

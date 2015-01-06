@@ -56,9 +56,14 @@ module HasVcards
     # SwissMatch
     include Vcard::DirectoryLookup
 
-    scope :active, conditions: { active: true }
-    scope :by_name, ->(name) { { conditions: by_name_conditions(name) } }
-    scope :with_address, joins(:address).includes(:address)
+    scope :active, -> { where(active: true) }
+    scope :with_address, -> { joins(:address).includes(:address) }
+
+    def self.by_name(name)
+      where(
+        'full_name LIKE :name OR family_name LIKE :name OR given_name LIKE :name OR nickname LIKE :name', name: name
+      )
+    end
 
     # Validations
     include I18nHelpers
@@ -83,19 +88,6 @@ module HasVcards
       return read_attribute(:full_name) if read_attribute(:full_name)
 
       [given_name.try(:first).try(:upcase), family_name].compact.join('. ')
-    end
-
-    # Advanced finders
-    def self.by_name_conditions(name)
-      ['vcards.full_name LIKE :name OR vcards.family_name LIKE :name OR vcards.given_name LIKE :name OR vcards.nickname LIKE :name', { name: name }]
-    end
-
-    def self.find_by_name(name)
-      find :first, conditions: by_name_conditions(name)
-    end
-
-    def self.find_all_by_name(name)
-      find :all, conditions: by_name_conditions(name)
     end
 
     # Helper methods

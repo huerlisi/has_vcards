@@ -180,4 +180,15 @@ describe HasVcards::Vcard do
       end
     end
   end
+
+  context 'scopes' do
+    describe '.by_name' do
+      it 'finds vcards with name' do
+        vcard_1 = FactoryGirl.create :vcard, full_name: 'quack'
+        vcard_2 = FactoryGirl.create :vcard, full_name: 'Andi Peter'
+
+        expect(HasVcards::Vcard.by_name('quack')).to eq [vcard_1]
+      end
+    end
+  end
 end

@@ -13,8 +13,6 @@ module HasVcards
       extend ActiveSupport::Concern
 
       included do
-        scope :by_name, ->(name) { { include: :vcard, order: 'vcards.full_name', conditions: Vcard.by_name_conditions(name) } }
-
         # Vcards
         has_many :vcards, class_name: 'HasVcards::Vcard', as: 'reference', autosave: true, validate: true
         accepts_nested_attributes_for :vcards
