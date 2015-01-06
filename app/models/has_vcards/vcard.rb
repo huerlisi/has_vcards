@@ -56,9 +56,9 @@ module HasVcards
     # SwissMatch
     include Vcard::DirectoryLookup
 
-    scope :active, conditions: { active: true }
+    scope :active, -> { conditions: { active: true } }
     scope :by_name, ->(name) { { conditions: by_name_conditions(name) } }
-    scope :with_address, joins(:address).includes(:address)
+    scope :with_address, -> { joins(:address).includes(:address) }
 
     # Validations
     include I18nHelpers

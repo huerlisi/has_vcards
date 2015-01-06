@@ -24,10 +24,10 @@ module HasVcards
 
     # phone number types
     scope :by_type, ->(value) { where(phone_number_type: value) }
-    scope :phone, by_type('phone')
-    scope :fax, by_type('fax')
-    scope :mobile, by_type('mobile')
-    scope :email, by_type('email')
+    scope :phone, -> { by_type('phone') }
+    scope :fax, -> { by_type('fax') }
+    scope :mobile, -> { by_type('mobile') }
+    scope :email, -> { by_type('email') }
 
     def label
       I18n.translate(phone_number_type, scope: 'activerecord.attributes.has_vcards/phone_number.phone_number_type_enum', default: phone_number_type.titleize)
