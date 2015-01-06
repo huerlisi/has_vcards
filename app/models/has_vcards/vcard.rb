@@ -90,19 +90,6 @@ module HasVcards
       [given_name.try(:first).try(:upcase), family_name].compact.join('. ')
     end
 
-    # Advanced finders
-    def self.by_name_conditions(name)
-      ['vcards.full_name LIKE :name OR vcards.family_name LIKE :name OR vcards.given_name LIKE :name OR vcards.nickname LIKE :name', { name: name }]
-    end
-
-    def self.find_by_name(name)
-      find :first, conditions: by_name_conditions(name)
-    end
-
-    def self.find_all_by_name(name)
-      find :all, conditions: by_name_conditions(name)
-    end
-
     # Helper methods
     def address_lines
       lines = [extended_address, street_address, post_office_box, "#{postal_code} #{locality}"]
