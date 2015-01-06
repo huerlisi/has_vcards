@@ -56,9 +56,14 @@ module HasVcards
     # SwissMatch
     include Vcard::DirectoryLookup
 
-    scope :active, -> { conditions: { active: true } }
-    scope :by_name, ->(name) { { conditions: by_name_conditions(name) } }
+    scope :active, -> { where(active: true) }
     scope :with_address, -> { joins(:address).includes(:address) }
+
+    def self.by_name(name)
+      where(
+        'full_name LIKE :name OR family_name LIKE :name OR given_name LIKE :name OR nickname LIKE :name', name: name
+      )
+    end
 
     # Validations
     include I18nHelpers
