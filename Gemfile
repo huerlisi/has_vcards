@@ -15,8 +15,9 @@ gem 'rails', '~> 4.1.8'
 group :tools do
   # Debugger
   gem 'pry-rails'
-  gem 'pry-byebug', :platform => [:mri_20, :mri_21, :mri_22]
-  gem 'pry-debugger', :platform => [:mri_19]
+  # Disabled debuggers as there seems no proper way to get this working.
+  # gem 'pry-byebug', :platform => [:mri_20, :mri_21, :mri_22]
+  # gem 'pry-debugger', :platform => [:mri_19]
 
   # QA
   gem 'rubocop'
