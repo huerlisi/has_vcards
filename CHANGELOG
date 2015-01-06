@@ -1,6 +1,6 @@
 1.1.0
 =====
-Make Rails 4.2 ready.
+Make Rails 4.2 and Ruby 2.2 ready.
 
 We're also dropping a couple of methods that have been broken for in the 1.0 release.
 As it wasn't working anyway, we do not bump a major version for these changes.
