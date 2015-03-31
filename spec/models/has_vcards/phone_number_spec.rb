@@ -20,6 +20,14 @@ RSpec.describe HasVcards::PhoneNumber do
       phone.phone_number_type = 'new_phone'
       expect(phone.label).to eq 'New Phone'
     end
+
+    it 'returns empty string if phone_number_type is empty' do
+      phone.phone_number_type = nil
+      expect(phone.label).to eq ''
+
+      phone.phone_number_type = ' '
+      expect(phone.label).to eq ''
+    end
   end
 
   describe '#to_s' do
