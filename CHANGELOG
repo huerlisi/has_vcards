@@ -1,3 +1,8 @@
+1.1.1
+=====
+FIXES:
+* Fix expection in PhoneNumber.label for empty type.
+
 1.1.0
 =====
 Make Rails 4.2 and Ruby 2.2 ready.
