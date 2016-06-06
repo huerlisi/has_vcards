@@ -78,8 +78,8 @@ module HasVcards
 
     # Convenience accessors
     def full_name
-      result = read_attribute(:full_name)
-      result ||= [ family_name, given_name ].compact.join(' ')
+      result = read_attribute(:full_name).presence
+      result ||= [ family_name.presence, given_name.presence ].compact.join(' ')
 
       result
     end
