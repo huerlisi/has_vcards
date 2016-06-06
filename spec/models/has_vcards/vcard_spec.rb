@@ -72,11 +72,29 @@ describe HasVcards::Vcard do
     context 'without an existing full name' do
       before { @vcard.full_name = nil }
 
-      it 'constructs a full name from family- and given name' do
+      it 'constructs a full name from family and given name if full_name is nil' do
         @vcard.family_name = 'Clark'
         @vcard.given_name  = 'Louis'
 
         expect(@vcard.full_name).to eq 'Clark Louis'
+      end
+
+      it 'constructs a full name from family and given name if full_name is blank' do
+        @vcard.full_name = ' '
+        @vcard.family_name = 'Clark'
+        @vcard.given_name  = 'Louis'
+
+        expect(@vcard.full_name).to eq 'Clark Louis'
+      end
+
+      it 'does not add bogus space if only one name is present' do
+        @vcard.family_name = nil
+        @vcard.given_name = 'Louis'
+        expect(@vcard.full_name).to eq 'Louis'
+
+        @vcard.family_name = 'Clark'
+        @vcard.given_name = ''
+        expect(@vcard.full_name).to eq 'Clark'
       end
     end
   end
