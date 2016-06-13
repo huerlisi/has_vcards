@@ -10,7 +10,7 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-gem 'rails', '~> 4.1.8'
+gem 'rails', '~> 4.2'
 
 group :tools do
   # Debugger
