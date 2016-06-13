@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "simple_form"
   s.add_dependency "i18n_rails_helpers"
   s.add_dependency "haml"
+  s.add_dependency "mime-types", "< 3" # To stay compatible with Ruby 1.9
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "pg"
