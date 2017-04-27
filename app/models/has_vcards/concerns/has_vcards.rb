@@ -27,7 +27,8 @@ module HasVcards
         def vcard_with_autobuild
           vcard_without_autobuild || build_vcard
         end
-        alias_method_chain :vcard, :autobuild
+        alias_method :vcard_without_autobuild, :vcard
+        alias_method :vcard, :vcard_with_autobuild
 
         # Access restrictions
         if defined?(ActiveModel::MassAssignmentSecurity)
