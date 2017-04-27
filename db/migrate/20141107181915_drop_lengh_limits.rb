@@ -1,4 +1,4 @@
-class DropLenghLimits < ActiveRecord::Migration
+class DropLenghLimits < ActiveRecord::Migration[4.2]
   def change
     change_column :has_vcards_addresses, :post_office_box, :string, limit: nil
     change_column :has_vcards_addresses, :extended_address, :string, limit: nil

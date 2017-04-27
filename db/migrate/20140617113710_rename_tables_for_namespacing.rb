@@ -1,4 +1,4 @@
-class RenameTablesForNamespacing < ActiveRecord::Migration
+class RenameTablesForNamespacing < ActiveRecord::Migration[4.2]
   def change
     rename_table :addresses, :has_vcards_addresses
     rename_table :honorific_prefixes, :has_vcards_honorific_prefixes

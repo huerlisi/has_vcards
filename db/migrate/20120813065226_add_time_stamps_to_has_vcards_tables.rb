@@ -1,4 +1,4 @@
-class AddTimeStampsToHasVcardsTables < ActiveRecord::Migration
+class AddTimeStampsToHasVcardsTables < ActiveRecord::Migration[4.2]
   def self.up
     add_column :addresses, :created_at, :datetime
     add_column :addresses, :updated_at, :datetime
