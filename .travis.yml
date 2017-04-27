@@ -5,7 +5,6 @@ sudo: false
 script: "bundle exec rake"
 
 rvm:
-  - 1.9.3
   - 2.3.1
 
 env:
