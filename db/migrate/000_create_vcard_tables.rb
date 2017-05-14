@@ -1,4 +1,4 @@
-class CreateVcardTables < ActiveRecord::Migration
+class CreateVcardTables < ActiveRecord::Migration[4.2]
   def self.up
     create_table 'addresses', :force => true do |t|
       t.string  'post_office_box',  :limit => 50
@@ -47,4 +47,3 @@ class CreateVcardTables < ActiveRecord::Migration
     drop_table :vcards, :phone_numbers, :addresses
   end
 end
-
