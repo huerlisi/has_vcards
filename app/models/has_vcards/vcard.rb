@@ -28,7 +28,9 @@ module HasVcards
     def address_with_autobuild
       address_without_autobuild || build_address
     end
-    alias_method_chain :address, :autobuild
+    alias_method :address_without_autobuild, :address
+    alias_method :address, :address_with_autobuild
+
 
     # Contacts
     has_many :contacts, class_name: 'PhoneNumber', inverse_of: :vcard do
